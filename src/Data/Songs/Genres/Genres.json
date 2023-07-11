@@ -1,0 +1,63 @@
+
+[{
+  "nombre": "Pop",
+  "imagen": "require('../Data/Img/Genres/Cumbia.png')"
+},
+{
+  "nombre": "Rock",
+  "imagen": "require('../Data/Img/Genres/Cumbia.png')"
+},
+{
+  "nombre": "Hip Hop",
+  "imagen": "require('../Data/Img/Genres/Cumbia.png')"
+},
+{
+  "nombre": "R&B",
+  "imagen": "require('../Data/Img/Genres/Cumbia.png')"
+},
+{
+  "nombre": "Jazz",
+  "imagen": "require('../Data/Img/Genres/Cumbia.png')"
+},
+{
+  "nombre": "Reggae",
+  "imagen": "require('../Data/Img/Genres/Cumbia.png')"
+},
+{
+  "nombre": "Electrónica",
+  "imagen": "require('../Data/Img/Genres/Cumbia.png')"
+},
+{
+  "nombre": "Country",
+  "imagen": "require('../Data/Img/Genres/Cumbia.png')"
+},
+{
+  "nombre": "Folk",
+  "imagen": "require('../Data/Img/Genres/Cumbia.png')"
+},
+{
+  "nombre": "Blues",
+  "imagen": "require('../Data/Img/Genres/Cumbia.png')"
+},
+{
+  "nombre": "Clásica",
+  "imagen": "require('../Data/Img/Genres/Cumbia.png')"
+},
+{
+  "nombre": "Salsa",
+  "imagen": "require('../Data/Img/Genres/Cumbia.png')"
+},
+{
+  "nombre": "Reggaetón",
+  "imagen": "require('../Data/Img/Genres/Cumbia.png')"
+},
+{
+  "nombre": "Metal",
+  "imagen": "require('../Data/Img/Genres/Cumbia.png')"
+},
+{
+  "nombre": "Cumbia",
+  "imagen": "require('../Data/Img/Genres/Cumbia.png')"
+
+}
+]
