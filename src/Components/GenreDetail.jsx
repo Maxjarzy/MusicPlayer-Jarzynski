@@ -1,20 +1,22 @@
-import { StyleSheet, View, Text, Image, ImageBackground} from "react-native";
+import {
+  StyleSheet,
+  View,
+  ImageBackground,
+  TouchableOpacity,
+} from "react-native";
 
 const GenreDetail = ({ item }) => {
-  return(
-    <View style={styles.container}>
-      <ImageBackground
-        source={require('../Data/Img/Genres/Cumbia.png')}
-        resizeMode="cover"
-        style={{height: "100%", width: "100%"}}
-      />
-      {/* <Image
-        source={require('../Data/Img/Genres/Cumbia.png')}
-        resizeMode="cover"
-        style={styles.imagen}
-      /> */}
-    </View>
-  )
+  return (
+    <TouchableOpacity>
+      <View style={styles.container}>
+        <ImageBackground
+          source={item.imagen}
+          resizeMode="cover"
+          style={{ height: "100%", width: "100%" }}
+        ></ImageBackground>
+      </View>
+    </TouchableOpacity>
+  );
 };
 
 export default GenreDetail;
@@ -27,13 +29,11 @@ const styles = StyleSheet.create({
     margin: 10,
     alignItems: "center",
     justifyContent: "center",
-    borderStyle: "solid",
-    borderColor: "black",
-    borderWidth: 3,
+    
   },
   imagen: {
-    flex: 1, 
+    flex: 1,
     width: "100%",
-    height: "100%"
-  }
+    height: "100%",
+  },
 });

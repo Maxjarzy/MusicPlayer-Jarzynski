@@ -1,41 +1,68 @@
-import { StyleSheet, Text, View } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
-import { colors } from "../Global/Colors";
-import { Pressable } from "react-native";
+import { StyleSheet, Pressable, View, TouchableOpacity } from "react-native";
+import { AntDesign, FontAwesome5, MaterialCommunityIcons   } from "@expo/vector-icons";
+import { colors } from "../../assets/Colors/Colors";
 
 const Player = () => {
 
-    const onPlay = () =>{
-       
-    }
+  const onPlay = () =>{
 
+  }
+
+  const onNext = () =>{
+
+  }
+
+  const onPrevious = () => {
+
+  }
+
+  const onRandom = () => {
+
+  }
 
   return (
     <View style={styles.container}>
-      <Pressable>
-        <AntDesign
-          name="left"
-          size={40}
-          color={colors.sun}
-          style={styles.icon}
+      <TouchableOpacity>
+      <FontAwesome5 
+        name="random" 
+        size={24} 
+        color="white" 
+        style = {styles.icon}
+      
+      />
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <AntDesign 
+          name="arrowleft" 
+          size={35} 
+          color="white" 
+          style = {styles.icon}
         />
-      </Pressable>
-      <Pressable>
-        <AntDesign
-          name="caretright"
-          size={40}
-          color={colors.sun}
-          style={styles.icon}
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <AntDesign 
+          name="playcircleo" 
+          size={50} 
+          color="white" 
+          style = {styles.icon}
         />
-      </Pressable>
-      <Pressable>
-        <AntDesign
-          name="right"
-          size={40}
-          color={colors.sun}
-          style={styles.icon}
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <AntDesign 
+          name="arrowright" 
+          size={35} 
+          color="white" 
+          style = {styles.icon}       
         />
-      </Pressable>
+      </TouchableOpacity>
+      <TouchableOpacity>
+      <MaterialCommunityIcons 
+        name="playlist-music" 
+        size={35} 
+        color="white" 
+      />
+      </TouchableOpacity>
+      
     </View>
   );
 };
@@ -48,7 +75,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: colors.nigth,
-    justifyContent: "center",
+    justifyContent: "space-around",
   },
   icon: {
     margin: 10,

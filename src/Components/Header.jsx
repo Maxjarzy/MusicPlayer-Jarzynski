@@ -1,13 +1,14 @@
-import { StyleSheet, Image, View } from 'react-native'
-import { colors } from "../Global/Colors";
+import { StyleSheet, Image, View, Text } from 'react-native'
+import { colors } from "../../assets/Colors/Colors";
 
 const Header = () => {
   return (
     <View style={styles.container}>
       <Image 
-        source={require('../Data/Img/Logo.png')}
+        source={require('../../assets/Img/Logo.png')}
         style={styles.logo}
       />
+      <Text style = {styles.title}>CoderMusic</Text>
     </View>
   )
 }
@@ -16,14 +17,25 @@ export default Header
 
 const styles = StyleSheet.create({
     container: {
-        height: 120,
+        height: 100,
         width: "100%",
         backgroundColor: colors.cat,
+        flexDirection: "row",
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "flex-start", 
+        backgroundColor: colors.cat
     },
     logo: {
-        width: "100%",
-        height: "60%"
+        width: "70%",
+        height: "70%",
+        flex: 3/10,
+    },
+    title: {
+      flex: 8/10,
+      fontFamily: 'Noto-Sans',
+      fontWeight: "bold",
+      fontSize: 30,
+      fontStyle: 'italic',
+      marginLeft: 0  
     }
 })
