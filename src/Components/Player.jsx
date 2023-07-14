@@ -1,4 +1,4 @@
-import { StyleSheet, Pressable, View, TouchableOpacity } from "react-native";
+import { StyleSheet, View, TouchableOpacity } from "react-native";
 import { AntDesign, FontAwesome5, MaterialCommunityIcons   } from "@expo/vector-icons";
 import { colors } from "../../assets/Colors/Colors";
 

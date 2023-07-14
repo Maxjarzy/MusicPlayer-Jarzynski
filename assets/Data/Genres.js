@@ -23,7 +23,7 @@ const genres =[{
     imagen: require('../Img/Genres/Reggae.png')
   },
   {
-    nombre: 'Electrónica',
+    nombre: 'Electronica',
     imagen: require('../Img/Genres/Electronica.png')
   },
   {
@@ -39,7 +39,7 @@ const genres =[{
     imagen: require('../Img/Genres/Blues.png')
   },
   {
-    nombre: 'Clásica',
+    nombre: 'Clasica',
     imagen: require('../Img/Genres/Clasica.png')
   },
   {
@@ -47,7 +47,7 @@ const genres =[{
     imagen: require('../Img/Genres/Salsa.png')
   },
   {
-    nombre: 'Reggaetón',
+    nombre: 'Reggaeton',
     imagen: require('../Img/Genres/Reggaeton.png')
   },
   {

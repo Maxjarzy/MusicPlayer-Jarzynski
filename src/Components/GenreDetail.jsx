@@ -1,21 +1,27 @@
 import {
-  StyleSheet,
-  View,
+  FlatList,
   ImageBackground,
-  TouchableOpacity,
+  StyleSheet,
+  Text,
+  View,
 } from "react-native";
+/* import songs from "../../assets/Songs/Genres/Songs.js"; */
+import Song from "./Song";
 
-const GenreDetail = ({ item }) => {
+const GenreDetail = ({genredList}) => {
   return (
-    <TouchableOpacity>
-      <View style={styles.container}>
-        <ImageBackground
-          source={item.imagen}
-          resizeMode="cover"
-          style={{ height: "100%", width: "100%" }}
-        ></ImageBackground>
-      </View>
-    </TouchableOpacity>
+    <View style={styles.container}>
+      <ImageBackground
+        source={require('./../../assets/Img/Backgrounds/WhiteWood.png')}
+      >
+        <FlatList
+          data={genredList}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => <Song item={item} />}
+          style={styles.songsList}
+        />
+      </ImageBackground>
+    </View>
   );
 };
 
@@ -23,17 +29,11 @@ export default GenreDetail;
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
-    width: 100,
-    height: 130,
-    margin: 10,
-    alignItems: "center",
     justifyContent: "center",
-    
-  },
-  imagen: {
     flex: 1,
-    width: "100%",
-    height: "100%",
+  },
+  songsList: {
+    margin: 25,
+    rowGap: 5,
   },
 });

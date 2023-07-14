@@ -1,9 +1,11 @@
 import { StyleSheet, View, FlatList, ImageBackground } from "react-native";
-import GenreDetail from "./GenreDetail";
-import genres from "../../assets/Data/Genres";
 import { colors } from "../../assets/Colors/Colors";
+import GenreList from "./GenreList";
+import genres from "../../assets/Data/Genres";
 
 const Genres = () => {
+
+
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -15,7 +17,7 @@ const Genres = () => {
           showsVerticalScrollIndicator={false}
           data={genres}
           keyExtractor={(genre) => genre.nombre}
-          renderItem={({ item }) => <GenreDetail item={item} />}
+          renderItem={({ item }) => <GenreList item={item} />}
           numColumns={3}
           style={styles.lista}
         />
