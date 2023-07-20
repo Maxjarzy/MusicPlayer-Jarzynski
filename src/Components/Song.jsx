@@ -1,9 +1,13 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
-const Song = ({ item }) => {
+const Song = ({ item, navigation }) => {
+
+  const onSelect = (url) => {
+    navigation.navigate('Player', {item})
+  }
 
   return (
-    <TouchableOpacity style={styles.song}>
+    <TouchableOpacity style={styles.song} onPress={() => onSelect(item)}>
       <Text style={styles.songTitle}>{item.title}</Text>
     </TouchableOpacity>
   );

@@ -2,22 +2,28 @@ import {
   FlatList,
   ImageBackground,
   StyleSheet,
-  Text,
   View,
 } from "react-native";
-/* import songs from "../../assets/Songs/Genres/Songs.js"; */
-import Song from "./Song";
+import songs from "../../assets/Data/Songs";
+import Song from "../Components/Song";
 
-const GenreDetail = ({genredList}) => {
+
+const GenreDetail = ( {navigation,route} ) => {
+
+  const {genre} = route.params
+
+  const genreFiltred = songs.filter( (song) => song.genre === genre)
+
   return (
     <View style={styles.container}>
       <ImageBackground
         source={require('./../../assets/Img/Backgrounds/WhiteWood.png')}
+        style={styles.background}
       >
         <FlatList
-          data={genredList}
+          data={genreFiltred}
           keyExtractor={(item) => item.id}
-          renderItem={({ item }) => <Song item={item} />}
+          renderItem={({ item }) => <Song item={item} navigation={navigation}/>}
           style={styles.songsList}
         />
       </ImageBackground>
@@ -36,4 +42,7 @@ const styles = StyleSheet.create({
     margin: 25,
     rowGap: 5,
   },
+  background: {
+    flex: 1,
+  }
 });

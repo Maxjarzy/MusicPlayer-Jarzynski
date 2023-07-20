@@ -4,22 +4,15 @@ import {
   ImageBackground,
   TouchableOpacity,
 } from "react-native";
-import { useState, useEffect } from "react";
-import songs from "../../assets/Data/Songs";
-import GenreDetail from "./GenreDetail";
 
-const GenreList = ({ item }) => {
-  
-  const [genre, setGenre] = useState("");
 
-  const handleGenre = (genre) => {
-    setGenre(genre);
-    console.log(`Se seteo el estado en ${genre}`);
-  };
+const GenreItem = ({ 
+  item,
+  navigation
+}) => {
 
- 
     return (
-      <TouchableOpacity onPress={() => handleGenre(item.nombre)}>
+      <TouchableOpacity onPress={() => navigation.navigate('GenreDetail', {genre: item.nombre})}>
         <View style={styles.container}>
           <ImageBackground
             source={item.imagen}
@@ -31,14 +24,14 @@ const GenreList = ({ item }) => {
     );
 };
 
-export default GenreList;
+export default GenreItem;
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    width: 100,
+    width: 110,
     height: 130,
-    margin: 10,
+    margin: 5,
     alignItems: "center",
     justifyContent: "center",
   },

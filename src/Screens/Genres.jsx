@@ -1,10 +1,8 @@
 import { StyleSheet, View, FlatList, ImageBackground } from "react-native";
-import { colors } from "../../assets/Colors/Colors";
-import GenreList from "./GenreList";
+import GenreItem from "../Components/GenreItem";
 import genres from "../../assets/Data/Genres";
 
-const Genres = () => {
-
+const Genres = ({navigation}) => {
 
   return (
     <View style={styles.container}>
@@ -17,9 +15,9 @@ const Genres = () => {
           showsVerticalScrollIndicator={false}
           data={genres}
           keyExtractor={(genre) => genre.nombre}
-          renderItem={({ item }) => <GenreList item={item} />}
+          renderItem={({ item }) => <GenreItem item={item} navigation={navigation}/>}
           numColumns={3}
-          style={styles.lista}
+          contentContainerStyle={styles.lista} 
         />
       </ImageBackground>
     </View>
@@ -31,11 +29,11 @@ export default Genres;
 const styles = StyleSheet.create({
   container: {
     flex: 5,
-    width: "100%",
-    alignItems: "center",
-    backgroundColor: colors.cat,
   },
   background: {
+    width: "100%",
+  },
+  lista:{
     width: "100%",
     alignItems: "center"
   }
