@@ -1,37 +1,65 @@
-import { StyleSheet, SafeAreaView, StatusBar } from "react-native";
+import { StyleSheet, SafeAreaView, StatusBar, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Header from "../Components/Header";
-import Nav from "../Components/Nav";
-import Genres from "../Screens/Genres";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { Ionicons, MaterialCommunityIcons  } from "@expo/vector-icons";
+import { colors } from "../../assets/Colors/Colors";
+import MusicStack from "./MusicStack";
+import PlayListStack from "./PlayListStack";
 import Player from "../Screens/Player";
-import Playlist from "../Screens/Playlist";
-import GenreDetail from "../Screens/GenreDetail";
 
-const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 const Navigator = () => {
   return (
     <SafeAreaView style={styles.container}>
       <NavigationContainer>
-        <Stack.Navigator
-          initialRouteName="Home"
-          screenOptions={
-            ({route}) => (
-              {
-                header: () => {
-                  return <Header/>
-                },
-              }
-            )
-          }
+        <Tab.Navigator
+          screenOptions={{
+            headerShown: false,
+            tabBarShowLabel: false,
+            tabBarStyle: styles.tabBar,
+          }}
         >
-          <Stack.Screen name="Home" component={Genres} />
-          <Stack.Screen name="GenreDetail" component={GenreDetail} />
-          <Stack.Screen name="Playlist" component={Playlist} />
-          <Stack.Screen name="Player" component={Player} />
-        </Stack.Navigator>
-        <Nav />
+          <Tab.Screen
+            name="Music"
+            component={MusicStack}
+            options={{
+              tabBarIcon: ({ focused }) => {
+                return (
+                  <View>
+                    <Ionicons name="ios-home-outline" size={30} color={focused ? colors.sun : "white"} />
+                  </View>
+                );
+              },
+            }}
+          />
+          <Tab.Screen
+            name="Play"
+            component={Player}
+            options={{
+              tabBarIcon: ({ focused }) => {
+                return (
+                  <View>
+                    <Ionicons name="ios-play-outline" size={30} color={focused ? colors.sun : "white"} />
+                  </View>
+                );
+              },
+            }}
+          />
+          <Tab.Screen
+            name="Library"
+            component={PlayListStack}
+            options={{
+              tabBarIcon: ({ focused }) => {
+                return (
+                  <View>
+                    <MaterialCommunityIcons name="music-box-multiple-outline" size={30} color={focused ? colors.sun : "white"}/>
+                  </View>
+                );
+              },
+            }}
+          />
+        </Tab.Navigator>
       </NavigationContainer>
     </SafeAreaView>
   );
@@ -44,5 +72,9 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+  },
+  tabBar: {
+    backgroundColor: colors.catDarkness,
+    height: 80,
   },
 });

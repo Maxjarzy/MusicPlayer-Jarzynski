@@ -12,9 +12,19 @@ import {
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
 import { colors } from "../../assets/Colors/Colors";
+import { useEffect, useState } from "react";
 
 const Player = ({ route }) => {
   const { item } = route.params;
+
+  const [playing, setPlaying] = useState({
+    id: null,
+    title: "",
+    artist: "",
+    genre: "",
+    url: ""
+  })
+
 
   /*  
   const onPlay = () => {};
@@ -49,7 +59,7 @@ const Player = ({ route }) => {
           <FontAwesome5
             name="random"
             size={24}
-            color="white"
+            color="black"
             style={styles.icon}
           />
         </TouchableOpacity>
@@ -57,7 +67,7 @@ const Player = ({ route }) => {
           <AntDesign
             name="arrowleft"
             size={35}
-            color="white"
+            color="black"
             style={styles.icon}
           />
         </TouchableOpacity>
@@ -65,7 +75,7 @@ const Player = ({ route }) => {
           <AntDesign
             name="playcircleo"
             size={50}
-            color="white"
+            color="black"
             style={styles.icon}
           />
         </TouchableOpacity>
@@ -73,7 +83,7 @@ const Player = ({ route }) => {
           <AntDesign
             name="arrowright"
             size={35}
-            color="white"
+            color="black"
             style={styles.icon}
           />
         </TouchableOpacity>
@@ -81,7 +91,7 @@ const Player = ({ route }) => {
           <MaterialCommunityIcons
             name="playlist-music"
             size={35}
-            color="white"
+            color="black"
           />
         </TouchableOpacity>
       </View>
@@ -99,11 +109,11 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: colors.nigth,
+    backgroundColor: colors.cat,
     justifyContent: "space-between",
     borderBottomColor: "white",
     borderBottomWidth: 0.5,
-    padding: 5
+    padding: 5,
   },
   icon: {
     margin: 10,

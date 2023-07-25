@@ -4,27 +4,24 @@ import { colors } from "./../../assets/Colors/Colors";
 
 const Nav = () => {
 
-  /* const handleNav = (screen) => {
-    navigation.navigate(screen)
-  } */
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.navButton} /* onPress={handleNav('Home')} */>
+      <TouchableOpacity style={styles.navButton}>
         <Ionicons 
           name="ios-home-outline" 
           size={30} 
           color="white" 
         />
       </TouchableOpacity>
-      <TouchableOpacity style={styles.navButton} /* onPress={handleNav('Player')} */>
+      <TouchableOpacity style={styles.navButton}>
         <Ionicons 
           name="disc-outline" 
           size={30} 
           color="white" 
         />
       </TouchableOpacity>
-      <TouchableOpacity style={styles.navButton} /* onPress={handleNav('Playlist')} */>
+      <TouchableOpacity style={styles.navButton}>
         <SimpleLineIcons 
           name="playlist" 
           size={30} 

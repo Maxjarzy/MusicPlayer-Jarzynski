@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "flex-start", 
-        backgroundColor: colors.cat
+        backgroundColor: colors.sun
     },
     logo: {
         width: "70%",

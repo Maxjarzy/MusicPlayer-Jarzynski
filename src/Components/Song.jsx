@@ -1,15 +1,24 @@
-import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, Pressable } from "react-native";
+import { Feather } from '@expo/vector-icons'; 
 
-const Song = ({ item, navigation }) => {
+const Song = ({ item, navigation, onPressSustain }) => {
+
 
   const onSelect = (url) => {
-    navigation.navigate('Player', {item})
-  }
+    navigation.navigate("Play", { item });
+  };
+
 
   return (
-    <TouchableOpacity style={styles.song} onPress={() => onSelect(item)}>
+    <Pressable
+      style={styles.song}
+      onPress={() => onSelect(item)}
+    >
       <Text style={styles.songTitle}>{item.title}</Text>
-    </TouchableOpacity>
+      <Pressable onPress={onPressSustain}>
+        <Feather name="more-vertical" size={24} color="black" />
+      </Pressable>
+    </Pressable>
   );
 };
 
@@ -17,6 +26,8 @@ export default Song;
 
 const styles = StyleSheet.create({
   song: {
+    flexDirection: "row",
+    justifyContent: "space-between",
     backgroundColor: "#88888899",
     marginVertical: 5,
     padding: 5,
@@ -24,6 +35,6 @@ const styles = StyleSheet.create({
   songTitle: {
     color: "#000000",
     fontFamily: "Noto-Sans",
-    fontWeight: "500"
-  }
+    fontWeight: "500",
+  },
 });
