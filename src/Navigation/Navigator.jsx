@@ -1,4 +1,4 @@
-import { StyleSheet, SafeAreaView, StatusBar, View } from "react-native";
+import { StyleSheet, SafeAreaView, StatusBar, View, Platform } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons, MaterialCommunityIcons  } from "@expo/vector-icons";

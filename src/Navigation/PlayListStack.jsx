@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import PlayList from "../Screens/PlayList";
+import PlayList from "../Screens/Playlist"
 import Header from "../Components/Header";
 
 const PlayListStack = () => {

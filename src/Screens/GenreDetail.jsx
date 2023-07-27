@@ -10,15 +10,13 @@ import {
 import { useState } from "react";
 import { colors } from "../../assets/Colors/Colors";
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
-import songs from "../../assets/Data/Songs";
+import { useSelector } from "react-redux";
 import Song from "../Components/Song";
 
 const GenreDetail = ({ navigation, route }) => {
   const [modalVisible, setModalVisible] = useState(false);
 
-  const { genre } = route.params;
-
-  const genreFiltred = songs.filter((song) => song.genre === genre);
+  const songsSelected = useSelector(state => state.selectionReduce.value.songsSelected)
 
   const onPressSustain = () => {
     setModalVisible(true);
@@ -31,7 +29,7 @@ const GenreDetail = ({ navigation, route }) => {
         style={styles.background}
       >
         <FlatList
-          data={genreFiltred}
+          data={songsSelected}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
             <Song
