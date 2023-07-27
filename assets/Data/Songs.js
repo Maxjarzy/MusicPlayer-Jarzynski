@@ -12,14 +12,14 @@ const songs =
         title: 'M.A Remix',
         artist: 'BM, Callejero Fino, La Joaqui, Lola Indigo',
         genre: 'Cumbia',
-        url: '../Songs/Genres/Cumbia/MA_Remix.mp3'
+        url: '../Songs/Genres/Cumbia/MA_remix.mp3'
     },
     {
         id: 3 ,
         title: 'Un Finde',
         artist: 'Big One, FMK, Ke personajes',
         genre: 'Cumbia',
-        url:'../Songs/Genres/Cumbia/Un_Finde.mp3'
+        url:'../Songs/Genres/Cumbia/Un_finde.mp3'
     },
     {
         id: 4,
