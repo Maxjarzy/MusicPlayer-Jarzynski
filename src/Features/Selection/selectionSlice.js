@@ -6,7 +6,7 @@ export const selectionSlice = createSlice({
     initialState: {
       value: {
         genre:"",
-        song:{},
+        song:[],
         allSongs: songs,
         songsSelected: []
       }
@@ -18,7 +18,7 @@ export const selectionSlice = createSlice({
         },
         setSong: (state, action) => {
             state.value.song = state.value.songsSelected.filter(song => song.id === action.payload)
-            state.value.song = action.payload
+            /* state.value.song = action.payload */
         },
     }
 })

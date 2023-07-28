@@ -12,19 +12,11 @@ import {
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
 import { colors } from "../../assets/Colors/Colors";
-import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 const Player = ({ route }) => {
-  const { item } = route.params;
-
-  const [playing, setPlaying] = useState({
-    id: null,
-    title: "",
-    artist: "",
-    genre: "",
-    url: ""
-  })
-
+ 
+  const songSelected = useSelector(state => state.selectionReduce.value.song[0])
 
   /*  
   const onPlay = () => {};
@@ -50,8 +42,8 @@ const Player = ({ route }) => {
             }}
             style={styles.image}
           />
-          <Text>{item.title}</Text>
-          <Text>{item.artist}</Text>
+          <Text>{songSelected.title}</Text>
+          <Text>{songSelected.artist}</Text>
         </View>
       </ImageBackground>
       <View style={styles.playerContainer}>

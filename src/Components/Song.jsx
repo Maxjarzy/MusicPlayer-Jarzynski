@@ -1,18 +1,23 @@
 import { StyleSheet, Text, View, Pressable } from "react-native";
 import { Feather } from '@expo/vector-icons'; 
+import { useDispatch } from "react-redux";
+import { setSong } from "../Features/Selection/selectionSlice";
 
 const Song = ({ item, navigation, onPressSustain }) => {
 
+  const dispatch = useDispatch();
 
-  const onSelect = (url) => {
-    navigation.navigate("Play", { item });
+  const onSelectSong = () => {
+    dispatch(setSong(item.id));
+    navigation.navigate("Play", { item });;
   };
+
 
 
   return (
     <Pressable
       style={styles.song}
-      onPress={() => onSelect(item)}
+      onPress={() => onSelectSong()}
     >
       <Text style={styles.songTitle}>{item.title}</Text>
       <Pressable onPress={onPressSustain}>
