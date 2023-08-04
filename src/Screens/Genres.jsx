@@ -1,6 +1,7 @@
 import { StyleSheet, View, FlatList, ImageBackground } from "react-native";
 import { useGetGenresQuery } from "../Services/songsServices";
 import GenreItem from "../Components/GenreItem";
+import Loader from "../Components/Loader";
 
 
 const Genres = ({navigation}) => {
@@ -8,6 +9,7 @@ const Genres = ({navigation}) => {
   const {data: genres, isLoading, isError} = useGetGenresQuery()
 
   return (
+    !isLoading ? 
     <View style={styles.container}>
       <ImageBackground
         source={require('../../assets/Img/Backgrounds/WhiteWood.png')}
@@ -24,6 +26,7 @@ const Genres = ({navigation}) => {
         />
       </ImageBackground>
     </View>
+    : <Loader/>
   );
 };
 
