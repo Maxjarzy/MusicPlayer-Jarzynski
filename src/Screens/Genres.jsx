@@ -1,8 +1,11 @@
 import { StyleSheet, View, FlatList, ImageBackground } from "react-native";
+import { useGetGenresQuery } from "../Services/songsServices";
 import GenreItem from "../Components/GenreItem";
-import genres from "../../assets/Data/Genres";
+
 
 const Genres = ({navigation}) => {
+
+  const {data: genres, isLoading, isError} = useGetGenresQuery()
 
   return (
     <View style={styles.container}>
@@ -14,7 +17,7 @@ const Genres = ({navigation}) => {
         <FlatList
           showsVerticalScrollIndicator={false}
           data={genres}
-          keyExtractor={(genre) => genre.nombre}
+          keyExtractor={(genre) => genre}
           renderItem={({ item }) => <GenreItem item={item} navigation={navigation}/>}
           numColumns={3}
           contentContainerStyle={styles.lista} 

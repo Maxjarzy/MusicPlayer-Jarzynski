@@ -1,62 +1,62 @@
 const genres =[{
-    nombre: 'Pop',
-    imagen: require('../Img/Genres/Pop.png')
+    name: "Pop",
+    image: require('../Img/Genres/Pop.png')
   },
   {
-    nombre: 'Rock',
-    imagen: require('../Img/Genres/Rock.png')
+    name: "Rock",
+    image: require('../Img/Genres/Rock.png')
   },
   {
-    nombre: 'Hip_Hop',
-    imagen: require('../Img/Genres/Hiphop.png')
+    name: "Hip_Hop",
+    image: require('../Img/Genres/Hip_Hop.png')
   },
   {
-    nombre: 'R&B',
-    imagen: require('../Img/Genres/RB.png')
+    name: "RB",
+    image: require('../Img/Genres/RB.png')
   },
   {
-    nombre: 'Jazz',
-    imagen: require('../Img/Genres/Jazz.png')
+    name: "Jazz",
+    image: require('../Img/Genres/Jazz.png')
   },
   {
-    nombre: 'Reggae',
-    imagen: require('../Img/Genres/Reggae.png')
+    name: "Reggae",
+    image: require('../Img/Genres/Reggae.png')
   },
   {
-    nombre: 'Electronic',
-    imagen: require('../Img/Genres/Electronica.png')
+    name: "Electronic",
+    image: require('../Img/Genres/Electronic.png')
   },
   {
-    nombre: 'Country',
-    imagen: require('../Img/Genres/Country.png')
+    name: "Country",
+    image: require('../Img/Genres/Country.png')
   },
   {
-    nombre: 'Folk',
-    imagen: require('../Img/Genres/Folk.png')
+    name: "Folk",
+    image: require('../Img/Genres/Folk.png')
   },
   {
-    nombre: 'Blues',
-    imagen: require('../Img/Genres/Blues.png')
+    name: "Blues",
+    image: require('../Img/Genres/Blues.png')
   },
   {
-    nombre: 'Clasic',
-    imagen: require('../Img/Genres/Clasica.png')
+    name: "Clasic",
+    image: require('../Img/Genres/Clasic.png')
   },
   {
-    nombre: 'Salsa',
-    imagen: require('../Img/Genres/Salsa.png')
+    name: "Salsa",
+    image: require('../Img/Genres/Salsa.png')
   },
   {
-    nombre: 'Reggaeton',
-    imagen: require('../Img/Genres/Reggaeton.png')
+    name: "Reggaeton",
+    image: require('../Img/Genres/Reggaeton.png')
   },
   {
-    nombre: 'Metal',
-    imagen: require('../Img/Genres/Metal.png')
+    name: "Metal",
+    image: require('../Img/Genres/Metal.png')
   },
   {
-    nombre: 'Cumbia',
-    imagen: require('../Img/Genres/Cumbia.png')
+    name: "Cumbia",
+    image: require('../Img/Genres/Cumbia.png')
   
   }
   ]
