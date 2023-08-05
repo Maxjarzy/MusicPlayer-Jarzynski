@@ -13,10 +13,14 @@ import {
 } from "@expo/vector-icons";
 import { colors } from "../../assets/Colors/Colors";
 import { useSelector } from "react-redux";
+import { useGetSongByIdQuery } from "../Services/songsServices";
+import Loader from "../Components/Loader";
 
-const Player = ({ route }) => {
+const Player = () => {
  
-  const songSelected = useSelector(state => state.selectionReduce.value.song[0])
+  const songId = useSelector(state => state.selectionReduce.value.song)
+
+  const {data: songSelected, isLoading, isError} = useGetSongByIdQuery(songId)
 
   /*  
   const onPlay = () => {};
@@ -29,6 +33,7 @@ const Player = ({ route }) => {
 
  */
   return (
+    !isLoading ? 
     <View style={styles.container}>
       <ImageBackground
         source={require("../../assets/Img/Backgrounds/WhiteWood.png")}
@@ -88,6 +93,7 @@ const Player = ({ route }) => {
         </TouchableOpacity>
       </View>
     </View>
+    : <Loader/>
   );
 };
 
@@ -101,7 +107,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: colors.cat,
+    backgroundColor: colors.catDarkness,
     justifyContent: "space-between",
     borderBottomColor: "white",
     borderBottomWidth: 0.5,

@@ -6,6 +6,7 @@ import Store from "./src/Store/Store";
 export default function App() {
   const [fontsLoaded] = useFonts({
     "Noto-Sans": require("./assets/Fonts/Noto_Sans/NotoSans-Light.ttf"),
+    "Noto-Sans-Bold": require("./assets/Fonts/Noto_Sans/NotoSans-SemiBold.ttf"),
   });
 
   if (!fontsLoaded) {

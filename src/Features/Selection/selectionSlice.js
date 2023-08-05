@@ -16,10 +16,7 @@ export const selectionSlice = createSlice({
             state.value.songsSelected = state.value.allSongs.filter(song => song.genre === action.payload)
             state.value.genre = action.payload
         },
-        setSong: (state, action) => {
-            state.value.song = state.value.songsSelected.filter(song => song.id === action.payload)
-            /* state.value.song = action.payload */
-        },
+        setSong: (state, action) => {state.value.song = action.payload}
     }
 })
 

@@ -6,23 +6,23 @@ import {
 } from "react-native";
 import { useDispatch } from "react-redux";
 import { setGenre } from "../Features/Selection/selectionSlice";
-import genres from "../../assets/Data/Genres";
+import { useGetGenreImageQuery } from "../Services/songsServices";
 
 const GenreItem = ({ item, navigation }) => {
   const dispatch = useDispatch();
 
   const onSelectGenre = () => {
     dispatch(setGenre(item));
-    navigation.navigate("GenreDetail", { genre: item });
+    navigation.navigate("GenreDetail");
   };
 
-  const itemFiltred = genres.filter(genre => genre.name === item )
-  
+  const { data: imageUrl } = useGetGenreImageQuery(item);
+
   return (
     <TouchableOpacity onPress={onSelectGenre}>
       <View style={styles.container}>
         <ImageBackground
-          source={itemFiltred[0].image}
+          source={{ uri: imageUrl }}
           resizeMode="cover"
           style={{ height: "100%", width: "100%" }}
         ></ImageBackground>

@@ -8,7 +8,7 @@ const Header = () => {
         source={require('../../assets/Img/Logo.png')}
         style={styles.logo}
       />
-      <Text style = {styles.title}>CoderMusic</Text>
+      <Text style = {styles.title}>MaxxMusic</Text>
     </View>
   )
 }
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "flex-start", 
-        backgroundColor: colors.sun
+        backgroundColor: colors.cat
     },
     logo: {
         width: "70%",

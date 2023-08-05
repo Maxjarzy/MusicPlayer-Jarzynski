@@ -4,7 +4,7 @@ import { colors } from "../../assets/Colors/Colors";
 const Loader = () => {
   return (
     <View style={styles.container}>
-      <ActivityIndicator size={80} color={colors.day} />
+      <ActivityIndicator size={80} color={colors.sun} />
     </View>
   )
 }

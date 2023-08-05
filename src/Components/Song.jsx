@@ -9,7 +9,7 @@ const Song = ({ item, navigation, onPressSustain }) => {
 
   const onSelectSong = () => {
     dispatch(setSong(item.id));
-    navigation.navigate("Play", { item });;
+    navigation.navigate("Play");
   };
 
 
@@ -39,7 +39,6 @@ const styles = StyleSheet.create({
   },
   songTitle: {
     color: "#000000",
-    fontFamily: "Noto-Sans",
-    fontWeight: "500",
+    fontFamily: "Noto-Sans-Bold",
   },
 });

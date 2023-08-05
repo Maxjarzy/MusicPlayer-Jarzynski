@@ -11,25 +11,26 @@ import { useState } from "react";
 import { colors } from "../../assets/Colors/Colors";
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 import { useSelector } from "react-redux";
+import { useGetSongsByGenreQuery } from "../Services/songsServices";
+import Loader from "../Components/Loader";
 import Song from "../Components/Song";
 
-const GenreDetail = ({ navigation, route }) => {
+const GenreDetail = ({ navigation}) => {
   const [modalVisible, setModalVisible] = useState(false);
 
-  const songsSelected = useSelector(state => state.selectionReduce.value.songsSelected)
+  const songsSelected = useSelector(state => state.selectionReduce.value.genre) 
+
+  const {data: songsByGenre, isLoading} = useGetSongsByGenreQuery(songsSelected)
 
   const onPressSustain = () => {
     setModalVisible(true);
   };
 
   return (
+    !isLoading ?
     <View style={styles.container}>
-      <ImageBackground
-        source={require("./../../assets/Img/Backgrounds/WhiteWood.png")}
-        style={styles.background}
-      >
         <FlatList
-          data={songsSelected}
+          data={songsByGenre}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
             <Song
@@ -40,8 +41,6 @@ const GenreDetail = ({ navigation, route }) => {
           )}
           style={styles.songsList}
         />
-      </ImageBackground>
-
       <Modal
         animationType="slide"
         transparent={true}
@@ -78,6 +77,7 @@ const GenreDetail = ({ navigation, route }) => {
         </View>
       </Modal>
     </View>
+    : <Loader/>
   );
 };
 
@@ -87,13 +87,11 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     flex: 1,
+    backgroundColor: colors.catDarkness
   },
   songsList: {
     margin: 5,
     rowGap: 5,
-  },
-  background: {
-    flex: 1,
   },
   pressableText: {
     color: colors.nigth,
