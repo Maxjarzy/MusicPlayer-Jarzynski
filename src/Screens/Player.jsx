@@ -1,10 +1,10 @@
-import { 
-  StyleSheet, 
-  View, 
-  Text, 
-  TouchableOpacity, 
-  Image, 
-  ImageBackground 
+import {
+  StyleSheet,
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  ImageBackground,
 } from "react-native";
 import {
   AntDesign,
@@ -15,12 +15,36 @@ import { colors } from "../../assets/Colors/Colors";
 import { useSelector } from "react-redux";
 import { useGetSongByIdQuery } from "../Services/songsServices";
 import Loader from "../Components/Loader";
+import { Audio } from "expo-av";
+import { Asset } from "expo-asset";
 
 const Player = () => {
- 
-  const songId = useSelector(state => state.selectionReduce.value.song)
+  const songId = useSelector((state) => state.selectionReduce.value.song);
 
-  const {data: songSelected, isLoading, isError} = useGetSongByIdQuery(songId)
+  const {
+    data: songSelected,
+    isLoading,
+    isError,
+  } = useGetSongByIdQuery(songId);
+
+
+    const reproducirCancion = async (audio) => {
+      const soundObject = new Audio.Sound();
+      try {
+        const asset = Asset.fromModule(require(`../../assets/Songs/Genres/Pop/Shape_of_you.mp3`));
+        await soundObject.loadAsync(asset);
+        await soundObject.playAsync();
+      } catch (error) {
+        console.error('Error al reproducir la canción:', error);
+      }
+    };
+  
+
+
+  if (songSelected) {
+    const {url} = songSelected
+    reproducirCancion(url);
+  }
 
   /*  
   const onPlay = () => {};
@@ -32,8 +56,7 @@ const Player = () => {
   const onRandom = () => {};
 
  */
-  return (
-    !isLoading ? 
+  return !isLoading ? (
     <View style={styles.container}>
       <ImageBackground
         source={require("../../assets/Img/Backgrounds/WhiteWood.png")}
@@ -93,7 +116,8 @@ const Player = () => {
         </TouchableOpacity>
       </View>
     </View>
-    : <Loader/>
+  ) : (
+    <Loader />
   );
 };
 
@@ -127,6 +151,6 @@ const styles = StyleSheet.create({
     height: 200,
   },
   background: {
-    flex: 4
-  }
+    flex: 4,
+  },
 });
