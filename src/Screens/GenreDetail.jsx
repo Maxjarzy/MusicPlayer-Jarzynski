@@ -10,21 +10,31 @@ import {
 import { useState } from "react";
 import { colors } from "../../assets/Colors/Colors";
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useGetSongsByGenreQuery } from "../Services/songsServices";
 import Loader from "../Components/Loader";
 import Song from "../Components/Song";
+import { addSongToPlaylist } from "../Features/Library/librarySlice";
 
 const GenreDetail = ({ navigation}) => {
   const [modalVisible, setModalVisible] = useState(false);
-
+  const [songToAdd, setSongToAdd] = useState("")
   const songsSelected = useSelector(state => state.selectionReduce.value.genre) 
 
   const {data: songsByGenre, isLoading} = useGetSongsByGenreQuery(songsSelected)
 
-  const onPressSustain = () => {
+  const dispatch = useDispatch()
+
+  const onOptions = (audio) => {
     setModalVisible(true);
+    setSongToAdd(audio)
   };
+
+  const onAdd = () => {
+    dispatch(addSongToPlaylist(songToAdd))
+    console.log(songToAdd)
+    setModalVisible(!modalVisible)
+  }
 
   return (
     !isLoading ?
@@ -36,7 +46,7 @@ const GenreDetail = ({ navigation}) => {
             <Song
               item={item}
               navigation={navigation}
-              onPressSustain={onPressSustain}
+              onOptions={onOptions}
             />
           )}
           style={styles.songsList}
@@ -63,9 +73,7 @@ const GenreDetail = ({ navigation}) => {
             </View>
           </Pressable>
           <Pressable
-            onPress={() => {
-              console.log("Agragando a lista"), setModalVisible(!modalVisible);
-            }}
+            onPress={onAdd}
           >
             <View style={styles.pressableContainer}>
               <MaterialIcons name="playlist-add" size={26} color="black" />
@@ -111,10 +119,5 @@ const styles = StyleSheet.create({
   pressableContainer: {
     flexDirection: "row",
     alignItems: "center",
-  },
-  modalFull: {
-    height: "100%",
-    backgroundColor: colors.nigth,
-    opacity: 0.2,
   },
 });

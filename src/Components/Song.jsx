@@ -3,7 +3,7 @@ import { Feather } from '@expo/vector-icons';
 import { useDispatch } from "react-redux";
 import { setSong } from "../Features/Selection/selectionSlice";
 
-const Song = ({ item, navigation, onPressSustain }) => {
+const Song = ({ item, navigation, onOptions }) => {
 
   const dispatch = useDispatch();
 
@@ -20,7 +20,7 @@ const Song = ({ item, navigation, onPressSustain }) => {
       onPress={() => onSelectSong()}
     >
       <Text style={styles.songTitle}>{item.title}</Text>
-      <Pressable onPress={onPressSustain}>
+      <Pressable onPress={() => onOptions(item)}>
         <Feather name="more-vertical" size={24} color="black" />
       </Pressable>
     </Pressable>

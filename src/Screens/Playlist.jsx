@@ -6,32 +6,26 @@ import {
   View,
   Modal,
   Pressable,
+  TextInput,
 } from "react-native";
 import { useState } from "react";
 import { Feather, Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { colors } from "../../assets/Colors/Colors";
-import SongsMock from "../../assets/Data/SongsMock";
-import PlayListItem from "../Components/PlayListItem";
+
 
 const PlayList = () => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [modalAddVisible, setModalAddVisible] = useState(false);
+  const [name, onChangeName] = useState("")
 
   const handleModal = () => {
     setModalVisible(true);
   };
   return (
     <View style={styles.container}>
-      <ImageBackground
-        source={require("../../assets/Img/Backgrounds/WhiteWood.png")}
-      >
-        <FlatList
-          data={SongsMock}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-            <PlayListItem item={item} handleModal={handleModal} />
-          )}
-        />
-      </ImageBackground>
+        <Pressable onPress={() => setModalAddVisible(!modalAddVisible)}>
+          <Ionicons name="add-circle-outline" size={50} color="black" />
+        </Pressable>
       <Modal
         animationType="slide"
         transparent={true}
@@ -76,6 +70,28 @@ const PlayList = () => {
           </Pressable>
         </View>
       </Modal>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalAddVisible}
+        onTouchEnd={() => {
+          setModalAddVisible(!modalAddVisible);
+          onChangeName("")
+        }}
+      >
+        <View style={styles.modalAddContainer}>
+          <View style={styles.modalAddView}>
+            <TextInput 
+              onChangeText={onChangeName}
+              value={name}
+              placeholder="New playlist name"
+              />
+            <Pressable style={styles.buttonModalAdd}>
+              <Text style={styles.buttonText}>Crear lista</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
@@ -85,6 +101,9 @@ export default PlayList;
 const styles = StyleSheet.create({
   container: {
     padding: 5,
+    alignItems: "center",
+    backgroundColor: colors.catDarkness,
+    flex: 1
   },
   modalContainer: {
     backgroundColor: colors.cat,
@@ -105,4 +124,30 @@ const styles = StyleSheet.create({
     fontFamily: "Noto-Sans",
     marginLeft: 10,
   },
+  image: {
+    alignItems: "center",
+  },
+  modalAddContainer: {
+    backgroundColor: colors.cat,
+    width: "100%",
+    height: "50%",
+    justifyContent: "center",
+    alignItems: "center",
+    position: "absolute",
+    bottom: 0,
+    padding: 15,
+  },
+  modalAddView: {
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  buttonModalAdd: {
+    marginTop: 15,
+    backgroundColor: colors.sun,
+    padding: 10,
+    width: "fit-content"
+  },
+  buttonText: {
+    fontFamily: "Noto-Sans-Bold"
+  }
 });

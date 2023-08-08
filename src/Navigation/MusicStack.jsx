@@ -3,6 +3,7 @@ import Genres from "../Screens/Genres";
 import GenreDetail from "../Screens/GenreDetail";
 import Player from "../Screens/Player";
 import Header from "../Components/Header";
+import ActualPlaylist from "../Screens/ActualPlaylist";
 
 const MusicStack = () => {
 
@@ -21,6 +22,7 @@ const MusicStack = () => {
       <Stack.Screen name="Home" component={Genres} />
       <Stack.Screen name="GenreDetail" component={GenreDetail} />
       <Stack.Screen name="Player" component={Player} />
+      <Stack.Screen name="ActualPlaylist" component={ActualPlaylist}/>
     </Stack.Navigator>
   );
 };

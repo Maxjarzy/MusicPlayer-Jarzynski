@@ -18,7 +18,7 @@ import Loader from "../Components/Loader";
 import { Audio } from "expo-av";
 import { Asset } from "expo-asset";
 
-const Player = () => {
+const Player = ({navigation}) => {
   const songId = useSelector((state) => state.selectionReduce.value.song);
 
   const {
@@ -107,7 +107,7 @@ const Player = () => {
             style={styles.icon}
           />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("ActualPlaylist")}>
           <MaterialCommunityIcons
             name="playlist-music"
             size={35}

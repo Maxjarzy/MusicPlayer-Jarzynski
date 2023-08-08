@@ -6,9 +6,6 @@ const PlayListItem = ({ item, handleModal }) => {
     <View style={styles.song}>
       <View>
         <Text style={styles.songTitle}>{item.title}</Text>
-        <Text style={styles.songTitle}>{item.artist}</Text>
-        <Text style={styles.songTitle}>{item.id}</Text>
-        <Text style={styles.songTitle}>{item.genre}</Text>
       </View>
       <Pressable onPress={handleModal}>
         <Feather name="more-vertical" size={24} color="black" />
