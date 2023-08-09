@@ -1,6 +1,4 @@
 import {
-  FlatList,
-  ImageBackground,
   StyleSheet,
   Text,
   View,
@@ -26,6 +24,7 @@ const PlayList = () => {
     triggerPostPlaylist({name, user, updateAt, playlist})
   }
 
+  console.log(result)
 
   return (
     <View style={styles.container}>

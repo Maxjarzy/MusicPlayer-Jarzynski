@@ -4,7 +4,7 @@ export const librarySlice = createSlice({
   name: "library",
   initialState: {
     value: {
-      user: "userMock",
+      user: "",
       updateAt: Date().toLocaleString(),
       playlist: [],
     },
@@ -17,8 +17,11 @@ export const librarySlice = createSlice({
         state.value.updateAt = Date().toLocaleString()
       }
     },
+    setUserLibrary: (state, action) => {
+      state.value.user = action.payload
+    }
   },
 });
 
-export const {addSongToPlaylist} = librarySlice.actions;
+export const {addSongToPlaylist, setUserLibrary} = librarySlice.actions;
 export default librarySlice.reducer;
