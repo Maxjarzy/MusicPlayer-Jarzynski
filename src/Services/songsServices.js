@@ -29,6 +29,13 @@ export const songsApi = createApi({
         return songTransformed[0];
       },
     }),
+    postPlaylist: builder.mutation({
+      query: (order) => ({
+        url: 'playlists.json',
+        method: 'POST',
+        body: order
+      })
+    }),
   }),
 });
 
@@ -37,4 +44,5 @@ export const {
   useGetGenreImageQuery,
   useGetSongsByGenreQuery,
   useGetSongByIdQuery,
+  usePostPlaylistMutation,
 } = songsApi;

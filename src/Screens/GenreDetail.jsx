@@ -32,7 +32,6 @@ const GenreDetail = ({ navigation}) => {
 
   const onAdd = () => {
     dispatch(addSongToPlaylist(songToAdd))
-    console.log(songToAdd)
     setModalVisible(!modalVisible)
   }
 

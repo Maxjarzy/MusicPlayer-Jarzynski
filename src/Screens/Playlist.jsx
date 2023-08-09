@@ -11,21 +11,27 @@ import {
 import { useState } from "react";
 import { Feather, Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { colors } from "../../assets/Colors/Colors";
-
+import { usePostPlaylistMutation } from "../Services/songsServices";
+import { useSelector } from "react-redux";
 
 const PlayList = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [modalAddVisible, setModalAddVisible] = useState(false);
-  const [name, onChangeName] = useState("")
+  const [name, onChangeName] = useState("");
+  const {user, updateAt, playlist} = useSelector(state => state.libraryReduce.value)
+  const [triggerPostPlaylist, result] = usePostPlaylistMutation()
 
-  const handleModal = () => {
-    setModalVisible(true);
-  };
+
+  const confirmPlaylist = () => {
+    triggerPostPlaylist({name, user, updateAt, playlist})
+  }
+
+
   return (
     <View style={styles.container}>
-        <Pressable onPress={() => setModalAddVisible(!modalAddVisible)}>
-          <Ionicons name="add-circle-outline" size={50} color="black" />
-        </Pressable>
+      <Pressable onPress={() => setModalAddVisible(!modalAddVisible)}>
+        <Ionicons name="add-circle-outline" size={50} color="black" />
+      </Pressable>
       <Modal
         animationType="slide"
         transparent={true}
@@ -76,17 +82,17 @@ const PlayList = () => {
         visible={modalAddVisible}
         onTouchEnd={() => {
           setModalAddVisible(!modalAddVisible);
-          onChangeName("")
+          onChangeName("");
         }}
       >
         <View style={styles.modalAddContainer}>
           <View style={styles.modalAddView}>
-            <TextInput 
+            <TextInput
               onChangeText={onChangeName}
               value={name}
               placeholder="New playlist name"
-              />
-            <Pressable style={styles.buttonModalAdd}>
+            />
+            <Pressable style={styles.buttonModalAdd} onPress={confirmPlaylist}>
               <Text style={styles.buttonText}>Crear lista</Text>
             </Pressable>
           </View>
@@ -103,7 +109,7 @@ const styles = StyleSheet.create({
     padding: 5,
     alignItems: "center",
     backgroundColor: colors.catDarkness,
-    flex: 1
+    flex: 1,
   },
   modalContainer: {
     backgroundColor: colors.cat,
@@ -139,15 +145,15 @@ const styles = StyleSheet.create({
   },
   modalAddView: {
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   buttonModalAdd: {
     marginTop: 15,
     backgroundColor: colors.sun,
     padding: 10,
-    width: "fit-content"
+    width: "fit-content",
   },
   buttonText: {
-    fontFamily: "Noto-Sans-Bold"
-  }
+    fontFamily: "Noto-Sans-Bold",
+  },
 });

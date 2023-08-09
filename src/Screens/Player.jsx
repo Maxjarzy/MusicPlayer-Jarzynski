@@ -28,7 +28,7 @@ const Player = ({navigation}) => {
   } = useGetSongByIdQuery(songId);
 
 
-    const reproducirCancion = async (audio) => {
+  /*   const reproducirCancion = async (audio) => {
       const soundObject = new Audio.Sound();
       try {
         const asset = Asset.fromModule(require(`../../assets/Songs/Genres/Pop/Shape_of_you.mp3`));
@@ -44,7 +44,7 @@ const Player = ({navigation}) => {
   if (songSelected) {
     const {url} = songSelected
     reproducirCancion(url);
-  }
+  } */
 
   /*  
   const onPlay = () => {};
