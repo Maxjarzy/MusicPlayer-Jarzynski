@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import PlayListItem from "../Components/PlayListItem";
 import {colors} from '../../assets/Colors/Colors'
 const ActualPlaylist = () => {
-  const playList = useSelector(state => state.libraryReduce.value.playlists);
+  const playList = useSelector(state => state.libraryReducer.value.playlists);
 
   return (
     <View style={styles.container}>

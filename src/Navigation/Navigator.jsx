@@ -18,7 +18,7 @@ import { useSelector } from "react-redux";
 const Tab = createBottomTabNavigator();
 
 const Navigator = () => {
-  const { email } = useSelector((state) => state.userReduce.value);
+  const { email } = useSelector((state) => state.userReducer.value);
 
   return (
     <SafeAreaView style={styles.container}>

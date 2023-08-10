@@ -19,7 +19,7 @@ import { addSongToPlaylist } from "../Features/Library/librarySlice";
 const GenreDetail = ({ navigation}) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [songToAdd, setSongToAdd] = useState("")
-  const songsSelected = useSelector(state => state.selectionReduce.value.genre) 
+  const songsSelected = useSelector(state => state.selectionReducer.value.genre) 
 
   const {data: songsByGenre, isLoading} = useGetSongsByGenreQuery(songsSelected)
 

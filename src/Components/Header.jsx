@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../Features/User/userSlice";
 const Header = () => {
   const dispatch = useDispatch();
-  const { email } = useSelector((state) => state.userReduce.value);
+  const { email } = useSelector((state) => state.userReducer.value);
 
   return (
     <View style={styles.container}>

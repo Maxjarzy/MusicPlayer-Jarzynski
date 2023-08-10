@@ -36,8 +36,6 @@ const LoginScreen = ({ navigation }) => {
     else setErrorPassword("");
   };
 
-  console.log(resultSignIn);
-
   useEffect(() => {
     if(resultSignIn.isSuccess){
         dispatch(setUser({

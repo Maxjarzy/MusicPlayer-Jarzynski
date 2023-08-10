@@ -19,7 +19,7 @@ import { Audio } from "expo-av";
 import { Asset } from "expo-asset";
 
 const Player = ({navigation}) => {
-  const songId = useSelector((state) => state.selectionReduce.value.song);
+  const songId = useSelector((state) => state.selectionReducer.value.song);
 
   const {
     data: songSelected,

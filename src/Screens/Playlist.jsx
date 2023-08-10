@@ -16,7 +16,7 @@ const PlayList = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [modalAddVisible, setModalAddVisible] = useState(false);
   const [name, onChangeName] = useState("");
-  const {user, updateAt, playlist} = useSelector(state => state.libraryReduce.value)
+  const {user, updateAt, playlist} = useSelector(state => state.libraryReducer.value)
   const [triggerPostPlaylist, result] = usePostPlaylistMutation()
 
 
