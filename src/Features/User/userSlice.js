@@ -12,7 +12,7 @@ export const userSlice = createSlice({
     setUser: (state, action) => {
       state.value = action.payload;
     },
-    logOut: () => {
+    logOut: (state) => {
       state.value = {
         email: "",
         idToken: "",
