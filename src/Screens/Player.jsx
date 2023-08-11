@@ -13,7 +13,7 @@ import {
 } from "@expo/vector-icons";
 import { colors } from "../../assets/Colors/Colors";
 import { useSelector } from "react-redux";
-import { useGetSongByIdQuery } from "../Services/songsServices";
+import { useGetSongByIdQuery } from "../Services/dataServices";
 import Loader from "../Components/Loader";
 import { Audio } from "expo-av";
 import { Asset } from "expo-asset";

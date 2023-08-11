@@ -7,13 +7,14 @@ import {
 } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import { Ionicons, MaterialCommunityIcons, Feather } from "@expo/vector-icons";
 import { colors } from "../../assets/Colors/Colors";
 import MusicStack from "./MusicStack";
 import PlayListStack from "./PlayListStack";
 import Player from "../Screens/Player";
 import AuthStack from "./AuthStack";
 import { useSelector } from "react-redux";
+import MyProfileStack from "./MyProfileStack";
 
 const Tab = createBottomTabNavigator();
 
@@ -75,6 +76,23 @@ const Navigator = () => {
                       <MaterialCommunityIcons
                         name="music-box-multiple-outline"
                         size={30}
+                        color={focused ? colors.sun : "white"}
+                      />
+                    </View>
+                  );
+                },
+              }}
+            />
+            <Tab.Screen
+              name="Profile"
+              component={MyProfileStack}
+              options={{
+                tabBarIcon: ({ focused }) => {
+                  return (
+                    <View>
+                      <Feather 
+                        name="user" 
+                        size={30} 
                         color={focused ? colors.sun : "white"}
                       />
                     </View>

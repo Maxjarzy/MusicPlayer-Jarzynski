@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { isValidEmail, isAtLeastSixCharacters } from "../Validations/auth";
 import { useDispatch } from "react-redux";
 import { setUser } from "../Features/User/userSlice";
+import { useGetGenreImageQuery } from "../Services/dataServices";
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -40,10 +41,14 @@ const LoginScreen = ({ navigation }) => {
     if(resultSignIn.isSuccess){
         dispatch(setUser({
             email : resultSignIn.data.email,
-            idToken: resultSignIn.data.idToken
+            idToken: resultSignIn.data.idToken,
+            localId: resultSignIn.data.localId,
+            profilePhoto: ""
         }))
     }
   }, [resultSignIn])
+
+  
 
   return (
     <View style={styles.main}>

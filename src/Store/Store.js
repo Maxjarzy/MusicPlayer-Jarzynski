@@ -1,6 +1,6 @@
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
-import { songsApi } from "../Services/songsServices";
+import { dataApi } from "../Services/dataServices";
 import { authApi } from "../Services/AuthSevices";
 import selectionReducer from "../Features/Selection/selectionSlice";
 import libraryReducer from "../Features/Library/librarySlice";
@@ -12,10 +12,10 @@ const store = configureStore({
         selectionReducer,
         libraryReducer,
         userReducer,
-        [songsApi.reducerPath]: songsApi.reducer,
+        [dataApi.reducerPath]: dataApi.reducer,
         [authApi.reducerPath]: authApi.reducer,
     },
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(songsApi.middleware, authApi.middleware),
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(dataApi.middleware, authApi.middleware),
 })
 
 setupListeners(store.dispatch);

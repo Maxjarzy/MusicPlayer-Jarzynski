@@ -9,7 +9,7 @@ import {
 import { useState } from "react";
 import { Feather, Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { colors } from "../../assets/Colors/Colors";
-import { usePostPlaylistMutation } from "../Services/songsServices";
+import { usePostPlaylistMutation } from "../Services/dataServices";
 import { useSelector } from "react-redux";
 
 const PlayList = () => {

@@ -1,8 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { base_url } from "../Database/dataBase";
 
-export const songsApi = createApi({
-  reducerPath: "songsApi",
+export const dataApi = createApi({
+  reducerPath: "dataApi",
   baseQuery: fetchBaseQuery({ baseUrl: base_url }),
   endpoints: (builder) => ({
     getGenres: builder.query({
@@ -36,6 +36,18 @@ export const songsApi = createApi({
         body: order
       })
     }),
+    getProfileImage: builder.query({
+      query: (localId) => `profileImages/${localId}.json`
+    }),
+    postProfileImage: builder.mutation({
+      query: ({image, localId}) => ({
+        url: `profileImages/${localId}.json`,
+        method: "PUT",
+        body: {
+          image:image
+        }
+      })
+    })
   }),
 });
 
@@ -45,4 +57,6 @@ export const {
   useGetSongsByGenreQuery,
   useGetSongByIdQuery,
   usePostPlaylistMutation,
-} = songsApi;
+  useGetProfileImageQuery,
+  usePostProfileImageMutation
+} = dataApi;

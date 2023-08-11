@@ -1,5 +1,5 @@
 import { StyleSheet, View, FlatList, ImageBackground } from "react-native";
-import { useGetGenresQuery } from "../Services/songsServices";
+import { useGetGenresQuery } from "../Services/dataServices";
 import GenreItem from "../Components/GenreItem";
 import Loader from "../Components/Loader";
 import { colors } from "../../assets/Colors/Colors";

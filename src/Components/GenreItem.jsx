@@ -6,7 +6,7 @@ import {
 } from "react-native";
 import { useDispatch } from "react-redux";
 import { setGenre } from "../Features/Selection/selectionSlice";
-import { useGetGenreImageQuery } from "../Services/songsServices";
+import { useGetGenreImageQuery } from "../Services/dataServices";
 
 const GenreItem = ({ item, navigation }) => {
   const dispatch = useDispatch();

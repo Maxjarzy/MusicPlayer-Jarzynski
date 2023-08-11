@@ -11,7 +11,7 @@ import { useState } from "react";
 import { colors } from "../../assets/Colors/Colors";
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { useGetSongsByGenreQuery } from "../Services/songsServices";
+import { useGetSongsByGenreQuery } from "../Services/dataServices";
 import Loader from "../Components/Loader";
 import Song from "../Components/Song";
 import { addSongToPlaylist } from "../Features/Library/librarySlice";
