@@ -10,6 +10,7 @@ import {
   useGetProfileImageQuery,
   usePostProfileImageMutation,
 } from "../Services/dataServices";
+import Error from "../Components/Error";
 
 const ImageSelector = ({ navigation }) => {
   const { localId } = useSelector((state) => state.userReducer.value);
@@ -19,6 +20,7 @@ const ImageSelector = ({ navigation }) => {
   const profilePhoto = data?.image;
 
   const [image, setImage] = useState(null);
+  const [permissionsError, setPermissionsError] = useState("");
   const dispatch = useDispatch();
 
   const [triggerSaveImage, resultSaveImage] = usePostProfileImageMutation();
@@ -32,21 +34,32 @@ const ImageSelector = ({ navigation }) => {
   };
 
   const pickImage = async () => {
-    const isCameraOk = await verifyCameraPermissions();
-    if (isCameraOk) {
-      let result = await ImagePicker.launchCameraAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.All,
-        allowsEditing: true,
-        aspect: [1, 1],
-        base64: true,
-        quality: 1,
-      });
-
-      if (!result.canceled) {
-        setImage(result.assets[0].uri);
+    try{
+      const isCameraOk = await verifyCameraPermissions();
+      if (isCameraOk) {
+        let result = await ImagePicker.launchCameraAsync({
+          mediaTypes: ImagePicker.MediaTypeOptions.All,
+          allowsEditing: true,
+          aspect: [1, 1],
+          base64: true,
+          quality: 1,
+        });
+  
+        if (!result.canceled) {
+          setImage(result.assets[0].uri);
+        }
+      } else {
+        setPermissionsError("You must accept the camera permissions to continue");
       }
+    }catch{
+      setPermissionsError("You must accept all permissions to continue")
     }
   };
+
+
+  const resetErrorMessage = () => {
+    setPermissionsError("")
+  }
 
   const confirmImage = async () => {
     try {
@@ -60,7 +73,7 @@ const ImageSelector = ({ navigation }) => {
         dispatch(setCameraImage(response.uri));
       }
     } catch (error) {
-      console.log(error);
+      setPermissionsError("Image can't be saved")
     }
     navigation.goBack();
   };
@@ -70,7 +83,9 @@ const ImageSelector = ({ navigation }) => {
     navigation.goBack();
   };
 
-  return (
+  return permissionsError ? (
+    <Error errorMessage={permissionsError} resetErrorMessage={resetErrorMessage}/>
+  ) : (
     <View style={styles.container}>
       {image || profilePhoto ? (
         <>
@@ -118,5 +133,34 @@ const styles = StyleSheet.create({
   },
   text: {
     fontFamily: "Noto-Sans",
+  },
+  modalView: {
+    backgroundColor: colors.cat,
+    width: 300,
+    height: 200,
+    padding: 20,
+    alignItems: "center",
+    borderRadius: 6,
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: colors.catDarkness,
+  },
+  textStyle: {
+    fontFamily: "Noto-Sans-Bold",
+    fontSize: 20,
+  },
+  modalText: {
+    fontFamily: "Noto-Sans-Bold",
+    textAlign: "center",
+  },
+  buttonClose: {
+    backgroundColor: colors.sun,
+    paddingVertical: 6,
+    paddingHorizontal: 15,
+    borderRadius: 6,
+    marginTop: 40,
   },
 });

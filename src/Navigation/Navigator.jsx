@@ -24,7 +24,7 @@ const Navigator = () => {
   return (
     <SafeAreaView style={styles.container}>
       <NavigationContainer>
-        {email ? (
+        {true ? (
           <Tab.Navigator
             screenOptions={{
               headerShown: false,
