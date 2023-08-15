@@ -15,76 +15,85 @@ import { useGetSongsByGenreQuery } from "../Services/dataServices";
 import Loader from "../Components/Loader";
 import Song from "../Components/Song";
 import { addSongToPlaylist } from "../Features/Library/librarySlice";
+import Error from '../Components/Error'
 
-const GenreDetail = ({ navigation}) => {
+const GenreDetail = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
-  const [songToAdd, setSongToAdd] = useState("")
-  const songsSelected = useSelector(state => state.selectionReducer.value.genre) 
+  const [songToAdd, setSongToAdd] = useState("");
+  const songsSelected = useSelector(
+    (state) => state.selectionReducer.value.genre
+  );
 
-  const {data: songsByGenre, isLoading} = useGetSongsByGenreQuery(songsSelected)
+  const {
+    data: songsByGenre,
+    isLoading,
+    isError,
+  } = useGetSongsByGenreQuery(songsSelected);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const onOptions = (audio) => {
     setModalVisible(true);
-    setSongToAdd(audio)
+    setSongToAdd(audio);
   };
 
   const onAdd = () => {
-    dispatch(addSongToPlaylist(songToAdd))
-    setModalVisible(!modalVisible)
-  }
+    dispatch(addSongToPlaylist(songToAdd));
+    setModalVisible(!modalVisible);
+  };
 
-  return (
-    !isLoading ?
-    <View style={styles.container}>
+  return !isLoading ? (
+    isError ? (
+      <Error
+        errorMessage={
+          "The data could not be retrieved. Please restart the application or come back later."
+        }
+      />
+    ) : (
+      <View style={styles.container}>
         <FlatList
           data={songsByGenre}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
-            <Song
-              item={item}
-              navigation={navigation}
-              onOptions={onOptions}
-            />
+            <Song item={item} navigation={navigation} onOptions={onOptions} />
           )}
           style={styles.songsList}
         />
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          setModalVisible(!modalVisible);
-        }}
-        on
-      >
-        <View style={styles.modalFull}></View>
-        <View style={styles.modalContainerPressable}>
-          <Pressable
-            onPress={() => {
-              console.log("Reproduciendo"), setModalVisible(!modalVisible);
-            }}
-          >
-            <View style={styles.pressableContainer}>
-              <Ionicons name="md-play-sharp" size={24} color="black" />
-              <Text style={styles.pressableText}>Reproducir</Text>
-            </View>
-          </Pressable>
-          <Pressable
-            onPress={onAdd}
-          >
-            <View style={styles.pressableContainer}>
-              <MaterialIcons name="playlist-add" size={26} color="black" />
-              <Text style={styles.pressableText}>
-                Agregar a lista de reproducción
-              </Text>
-            </View>
-          </Pressable>
-        </View>
-      </Modal>
-    </View>
-    : <Loader/>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            setModalVisible(!modalVisible);
+          }}
+          on
+        >
+          <View style={styles.modalFull}></View>
+          <View style={styles.modalContainerPressable}>
+            <Pressable
+              onPress={() => {
+                console.log("Reproduciendo"), setModalVisible(!modalVisible);
+              }}
+            >
+              <View style={styles.pressableContainer}>
+                <Ionicons name="md-play-sharp" size={24} color="black" />
+                <Text style={styles.pressableText}>Reproducir</Text>
+              </View>
+            </Pressable>
+            <Pressable onPress={onAdd}>
+              <View style={styles.pressableContainer}>
+                <MaterialIcons name="playlist-add" size={26} color="black" />
+                <Text style={styles.pressableText}>
+                  Agregar a lista de reproducción
+                </Text>
+              </View>
+            </Pressable>
+          </View>
+        </Modal>
+      </View>
+    )
+  ) : (
+    <Loader />
   );
 };
 
@@ -94,7 +103,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     flex: 1,
-    backgroundColor: colors.catDarkness
+    backgroundColor: colors.catDarkness,
   },
   songsList: {
     margin: 5,

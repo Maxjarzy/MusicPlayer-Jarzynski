@@ -1,16 +1,20 @@
 import { StyleSheet, View, Image } from "react-native";
-import React, { useState } from "react";
-import AddButton from "../Components/AddButton";
 import { colors } from "../../assets/Colors/Colors";
 import { useSelector } from "react-redux";
 import { useGetProfileImageQuery } from "../Services/dataServices";
+import AddButton from "../Components/AddButton";
+import Loader from "../Components/Loader";
 
 const MyProfile = ({ navigation }) => {
   const { localId, profilePhoto } = useSelector(
     (state) => state.userReducer.value
   );
 
-  const { data: image } = useGetProfileImageQuery(localId, {
+  const {
+    data: image,
+    isLoading,
+    isError,
+  } = useGetProfileImageQuery(localId, {
     refetchOnMountOrArgChange: true,
   });
 
@@ -20,17 +24,25 @@ const MyProfile = ({ navigation }) => {
     navigation.navigate("ImageSelector");
   };
 
-  return (
+  return !isLoading ? (
     <View style={styles.container}>
-      <Image
-        source={
-          profilePhoto || cameraImage
-            ? { uri: profilePhoto || cameraImage }
-            : require("../../assets/Img/defaultProfile.jpg")
-        }
-        style={styles.image}
-        resizeMode="cover"
-      />
+      {!isError ? (
+        <Image
+          source={
+            profilePhoto || cameraImage
+              ? { uri: profilePhoto || cameraImage }
+              : require("../../assets/Img/defaultProfile.jpg")
+          }
+          style={styles.image}
+          resizeMode="cover"
+        />
+      ) : (
+        <Image
+          source={require("../../assets/Img/defaultProfileError.jpg")}
+          style={styles.image}
+          resizeMode="cover"
+        />
+      )}
       <AddButton
         title={
           profilePhoto || cameraImage
@@ -40,6 +52,8 @@ const MyProfile = ({ navigation }) => {
         onPress={launchCamera}
       />
     </View>
+  ) : (
+    <Loader />
   );
 };
 

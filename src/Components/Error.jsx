@@ -4,12 +4,14 @@ import { colors } from "../../assets/Colors/Colors";
 const Error = ({ errorMessage, resetErrorMessage }) => {
   return (
     <View style={styles.errorContainer}>
-        <View style={styles.errorView}>
-          <Text style={styles.errorText}>{errorMessage}</Text>
+      <View style={styles.errorView}>
+        <Text style={styles.errorText}>{errorMessage}</Text>
+        {resetErrorMessage ? (
           <Pressable onPress={resetErrorMessage}>
             <Text style={styles.pressableTextStyle}>Ok</Text>
           </Pressable>
-        </View>
+        ) : null}
+      </View>
     </View>
   );
 };
@@ -21,7 +23,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: colors.catDarkness
+    backgroundColor: colors.catDarkness,
   },
   errorView: {
     backgroundColor: colors.cat,
@@ -38,10 +40,10 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
     paddingHorizontal: 15,
     borderRadius: 6,
-    marginTop: 40
+    marginTop: 40,
   },
   errorText: {
     textAlign: "center",
     fontFamily: "Noto-Sans",
-  }
+  },
 });

@@ -48,9 +48,7 @@ const ImageSelector = ({ navigation }) => {
         if (!result.canceled) {
           setImage(result.assets[0].uri);
         }
-      } else {
-        setPermissionsError("You must accept the camera permissions to continue");
-      }
+      } 
     }catch{
       setPermissionsError("You must accept all permissions to continue")
     }

@@ -58,7 +58,6 @@ const SignupScreen = ({ navigation }) => {
         setErrorConfirmPassword("Passwords not match");
       else setErrorConfirmPassword("");
     } catch (error) {
-      console.log("Catch error");
       console.log(error.message);
     }
   };

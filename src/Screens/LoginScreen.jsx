@@ -65,6 +65,7 @@ const LoginScreen = ({ navigation }) => {
           error={errorPassword}
           isSecure={true}
         />
+        {resultSignIn.isError ? <Text style={styles.error}>The data entered is invalid</Text> : null}
         <SubmitButton onPress={onSubmit} title="Send" />
         <Text style={styles.sub}>Not have an account?</Text>
         <Pressable onPress={() => navigation.navigate("Signup")}>
@@ -108,4 +109,10 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: colors.sun,
   },
+  error: {
+    fontSize: 16,
+    color: 'red',
+    fontFamily: 'Noto-Sans',
+    fontStyle: 'italic',
+},
 });
