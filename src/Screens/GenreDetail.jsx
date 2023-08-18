@@ -14,7 +14,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useGetSongsByGenreQuery } from "../Services/dataServices";
 import Loader from "../Components/Loader";
 import Song from "../Components/Song";
-import { addSongToPlaylist } from "../Features/Library/librarySlice";
 import Error from '../Components/Error'
 
 const GenreDetail = ({ navigation }) => {

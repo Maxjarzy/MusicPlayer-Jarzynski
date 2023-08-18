@@ -29,25 +29,32 @@ export const dataApi = createApi({
         return songTransformed[0];
       },
     }),
-    postPlaylist: builder.mutation({
-      query: (order) => ({
-        url: 'playlists.json',
-        method: 'POST',
-        body: order
-      })
-    }),
     getProfileImage: builder.query({
-      query: (localId) => `profileImages/${localId}.json`
+      query: (localId) => `profileImages/${localId}.json`,
     }),
     postProfileImage: builder.mutation({
-      query: ({image, localId}) => ({
+      query: ({ image, localId }) => ({
         url: `profileImages/${localId}.json`,
         method: "PUT",
         body: {
-          image:image
-        }
-      })
-    })
+          image: image,
+        },
+      }),
+    }),
+    postPlaylist: builder.mutation({
+      query: (order) => ({
+        url: "playlists.json",
+        method: "POST",
+        body: order,
+      }),
+    }),
+    getPlaylistByUser: builder.query({
+      query: (user) => `playlists.json?orderBy="user"&equalTo="${user}"`,
+      transformResponse: (response) => {
+        const playslistsTransformed = Object.values(response);
+        return playslistsTransformed;
+      },
+    }),
   }),
 });
 
@@ -58,5 +65,6 @@ export const {
   useGetSongByIdQuery,
   usePostPlaylistMutation,
   useGetProfileImageQuery,
-  usePostProfileImageMutation
+  usePostProfileImageMutation,
+  useGetPlaylistByUserQuery
 } = dataApi;
