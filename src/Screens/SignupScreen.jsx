@@ -7,7 +7,7 @@ import { useSignUpMutation } from "../Services/AuthSevices";
 import { useDispatch } from "react-redux";
 import { setUser } from "../Features/User/userSlice";
 import { isAtLeastSixCharacters, isValidEmail } from "../Validations/auth";
-import { setUserLibrary } from "../Features/Library/librarySlice";
+
 
 const SignupScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -30,7 +30,6 @@ const SignupScreen = ({ navigation }) => {
           profilePhoto: ""
         })
       );
-      dispatch(setUserLibrary(email));
     }
   }, [result]);
 

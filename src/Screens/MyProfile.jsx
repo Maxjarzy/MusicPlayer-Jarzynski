@@ -1,4 +1,4 @@
-import { StyleSheet, View, Image } from "react-native";
+import { StyleSheet, View, Image, Text } from "react-native";
 import { colors } from "../../assets/Colors/Colors";
 import { useSelector } from "react-redux";
 import { useGetProfileImageQuery } from "../Services/dataServices";
@@ -9,6 +9,7 @@ const MyProfile = ({ navigation }) => {
   const { localId, profilePhoto } = useSelector(
     (state) => state.userReducer.value
   );
+  const {email} = useSelector(state => state.userReducer.value)
 
   const {
     data: image,
@@ -24,6 +25,7 @@ const MyProfile = ({ navigation }) => {
     navigation.navigate("ImageSelector");
   };
 
+    console.log(profilePhoto, cameraImage)
   return !isLoading ? (
     <View style={styles.container}>
       {!isError ? (
@@ -43,6 +45,7 @@ const MyProfile = ({ navigation }) => {
           resizeMode="cover"
         />
       )}
+      <Text style={styles.profileText}>{email}</Text>
       <AddButton
         title={
           profilePhoto || cameraImage
@@ -71,4 +74,9 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     margin: 30,
   },
+  profileText: {
+    color: colors.sun,
+    margin: 5,
+    fontFamily: "Noto-Sans",
+  }
 });

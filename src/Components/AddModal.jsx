@@ -7,7 +7,8 @@ const AddModal = ({
   confirmPlaylist,
   onChangeText,
   modalAddVisible,
-  error
+  error, 
+  name
 }) => {
   return (
     <Modal
@@ -26,6 +27,8 @@ const AddModal = ({
           <AddButton
             onPress={confirmPlaylist}
             title={"Acept"}
+            disabled={name === "" ? true : false}
+            
           />
           <AddButton
             onPress={cancelPlaylist}

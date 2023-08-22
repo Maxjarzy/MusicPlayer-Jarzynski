@@ -5,12 +5,11 @@ import {
   useGetPlaylistByUserQuery,
   usePostPlaylistMutation,
 } from "../Services/dataServices";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Loader from "../Components/Loader";
 import LibraryItem from "../Components/LibraryItem";
 import AddModal from "../Components/AddModal";
-import { useEffect } from "react";
-import {setPlaylists } from '../Features/Library/librarySlice'
+import { setPlaylists } from "../Features/Library/librarySlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const PlayList = () => {
@@ -20,13 +19,16 @@ const PlayList = () => {
   const [triggerPostPlaylist, result] = usePostPlaylistMutation();
 
   const { email } = useSelector((state) => state.userReducer.value);
-  const { data, isError, isLoading, } = useGetPlaylistByUserQuery(email, {refetchOnMountOrArgChange: true});
-  const dispatch = useDispatch()
-
+  const { data, isError, isLoading, refetch } =
+    useGetPlaylistByUserQuery(email);
+  const dispatch = useDispatch();
+  
   useEffect(() => {
-    dispatch(setPlaylists(data))
-  }, [data])
-
+    dispatch(setPlaylists(data));
+    if (result.isSuccess) {
+      refetch();
+    }
+  }, [result, data]);
 
   const onAddPlaylist = () => {
     setModalAddVisible(!modalAddVisible);
@@ -76,6 +78,7 @@ const PlayList = () => {
         data={data}
         keyExtractor={(item) => item.name}
         renderItem={({ item }) => <LibraryItem item={item} />}
+        style={styles.flatlist}
       />
       <Pressable onPress={onAddPlaylist}>
         <Ionicons name="add-circle-outline" size={50} color="black" />
@@ -86,6 +89,7 @@ const PlayList = () => {
         onChangeText={onChangeName}
         modalAddVisible={modalAddVisible}
         error={error}
+        name={name}
       />
     </View>
   );
@@ -99,5 +103,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: colors.catDarkness,
+    padding: 5
   },
+  flatlist: {
+    width: "100%"
+  }
 });
