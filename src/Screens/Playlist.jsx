@@ -2,6 +2,7 @@ import { StyleSheet, View, Pressable, FlatList } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { colors } from "../../assets/Colors/Colors";
 import {
+  useDeletePlaylistMutation,
   useGetPlaylistByUserQuery,
   usePostPlaylistMutation,
 } from "../Services/dataServices";
@@ -11,24 +12,24 @@ import LibraryItem from "../Components/LibraryItem";
 import AddModal from "../Components/AddModal";
 import { setPlaylists } from "../Features/Library/librarySlice";
 import { useDispatch, useSelector } from "react-redux";
+import Error from '../Components/Error'
 
 const PlayList = () => {
   const [modalAddVisible, setModalAddVisible] = useState(false);
   const [name, onChangeName] = useState("");
   const [error, setError] = useState(false);
   const [triggerPostPlaylist, result] = usePostPlaylistMutation();
-
+  const [triggerDeletePlaylist, resultDelete] =useDeletePlaylistMutation()
   const { email } = useSelector((state) => state.userReducer.value);
-  const { data, isError, isLoading, refetch } =
-    useGetPlaylistByUserQuery(email);
+  const { data, isError, isLoading, refetch } =useGetPlaylistByUserQuery(email);
   const dispatch = useDispatch();
   
   useEffect(() => {
     dispatch(setPlaylists(data));
-    if (result.isSuccess) {
+    if (result.isSuccess || resultDelete.isSuccess) {
       refetch();
     }
-  }, [result, data]);
+  }, [result, resultDelete, data]);
 
   const onAddPlaylist = () => {
     setModalAddVisible(!modalAddVisible);
@@ -70,14 +71,15 @@ const PlayList = () => {
         onChangeText={onChangeName}
         modalAddVisible={modalAddVisible}
         error={error}
+        name={name}
       />
     </View>
   ) : (
     <View style={styles.container}>
       <FlatList
         data={data}
-        keyExtractor={(item) => item.name}
-        renderItem={({ item }) => <LibraryItem item={item} />}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => <LibraryItem item={item} triggerDeletePlaylist={triggerDeletePlaylist}/>}
         style={styles.flatlist}
       />
       <Pressable onPress={onAddPlaylist}>

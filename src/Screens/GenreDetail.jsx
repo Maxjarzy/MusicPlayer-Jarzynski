@@ -75,7 +75,7 @@ const GenreDetail = ({ navigation }) => {
               }}
             >
               <View style={styles.pressableContainer}>
-                <Ionicons name="md-play-sharp" size={24} color="black" />
+                <Ionicons name="md-play-sharp" size={26} color="black" />
                 <Text style={styles.pressableText}>Reproducir</Text>
               </View>
             </Pressable>

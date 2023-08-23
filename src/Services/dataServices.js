@@ -48,11 +48,23 @@ export const dataApi = createApi({
         body: order,
       }),
     }),
+    deletePlaylist: builder.mutation({
+      query: (id) => ({
+        url: `playlists/${id}.json`,
+        method: "DELETE",
+      }),
+    }),
     getPlaylistByUser: builder.query({
       query: (user) => `playlists.json?orderBy="user"&equalTo="${user}"`,
       transformResponse: (response) => {
-        const playslistsTransformed = Object.values(response);
-        return playslistsTransformed;
+        const playlistsWithIds = [];
+        for (const playlistId in response) {
+          if (response.hasOwnProperty(playlistId)) {
+            const playlistWithId = { id: playlistId, ...response[playlistId] };
+            playlistsWithIds.push(playlistWithId);
+          }
+        }
+        return playlistsWithIds;
       },
     }),
   }),
@@ -66,5 +78,6 @@ export const {
   usePostPlaylistMutation,
   useGetProfileImageQuery,
   usePostProfileImageMutation,
-  useGetPlaylistByUserQuery
+  useGetPlaylistByUserQuery,
+  useDeletePlaylistMutation,
 } = dataApi;

@@ -1,14 +1,31 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { Feather } from "@expo/vector-icons";
+import DeleteModal from "./DeleteModal";
+import { useState } from "react";
 
-const LibraryItem = ({ item }) => {
+const LibraryItem = ({ item, triggerDeletePlaylist }) => {
+  const [deleteModalVisible, setDeleteModalVisible] = useState(false);
+
+
+  const deletePlaylist = (id) => {
+    triggerDeletePlaylist(id)
+    setDeleteModalVisible(!deleteModalVisible)
+  }
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>{item.name}</Text>
-      <Pressable>
-        <Feather name="more-vertical" size={24} color="black" />
-      </Pressable>
-    </View>
+    <>
+      <View style={styles.container}>
+        <Text style={styles.text}>{item.name}</Text>
+        <Pressable onPress={() => setDeleteModalVisible(true)}>
+          <Feather name="more-vertical" size={24} color="black" />
+        </Pressable>
+      </View>
+      <DeleteModal
+        deleteModalVisible={deleteModalVisible}
+        setDeleteModalVisible={setDeleteModalVisible}
+        item={item}
+        deletePlaylist={deletePlaylist}
+      />
+    </>
   );
 };
 
