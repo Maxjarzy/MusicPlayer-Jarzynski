@@ -25,7 +25,6 @@ const MyProfile = ({ navigation }) => {
     navigation.navigate("ImageSelector");
   };
 
-    console.log(profilePhoto, cameraImage)
   return !isLoading ? (
     <View style={styles.container}>
       {!isError ? (

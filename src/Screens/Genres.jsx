@@ -11,13 +11,6 @@ import Error from "../Components/Error";
 const Genres = ({ navigation }) => {
   const { data: genres, isLoading, isError } = useGetGenresQuery();
 
-  /* const { email } = useSelector((state) => state.userReducer.value);
-  const dispatch = useDispatch();
-  
-  useEffect(() => {
-    dispatch(setUserLibrary(email));
-  }, []); */
-
   return !isLoading ? (
     isError ? (
       <Error
