@@ -67,6 +67,16 @@ export const dataApi = createApi({
         return playlistsWithIds;
       },
     }),
+    addSongToPlaylist: builder.mutation({
+      query: ({ item, song }) => ({
+        url: `playlists/${item.id}.json`,
+        method: "PATCH",
+        body: {
+          playlist: item.playlist ? [...item.playlist, song]: [song] ,
+          updateAt: Date().toLocaleString()
+        },
+      }),
+    }),
   }),
 });
 
@@ -80,4 +90,5 @@ export const {
   usePostProfileImageMutation,
   useGetPlaylistByUserQuery,
   useDeletePlaylistMutation,
+  useAddSongToPlaylistMutation,
 } = dataApi;

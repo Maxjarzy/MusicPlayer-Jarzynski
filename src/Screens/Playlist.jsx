@@ -44,7 +44,7 @@ const PlayList = () => {
         name,
         user: email,
         updateAt: Date().toLocaleString(),
-        playlist: [],
+        playlist: "",
       });
       setModalAddVisible(false);
       onChangeName("");

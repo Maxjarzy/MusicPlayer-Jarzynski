@@ -1,6 +1,5 @@
 import {
   FlatList,
-  ImageBackground,
   StyleSheet,
   View,
   Modal,
@@ -15,13 +14,13 @@ import { useGetSongsByGenreQuery } from "../Services/dataServices";
 import Loader from "../Components/Loader";
 import Song from "../Components/Song";
 import Error from '../Components/Error'
+import SelectModal from "../Components/SelectModal";
+import {setSongToAdd} from '../Features/Library/librarySlice'
 
 const GenreDetail = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
-  const [songToAdd, setSongToAdd] = useState("");
-  const songsSelected = useSelector(
-    (state) => state.selectionReducer.value.genre
-  );
+  const [modalPlaylistsVisible, setModalPlaylistsVisible] = useState(false)
+  const songsSelected = useSelector((state) => state.selectionReducer.value.genre);
 
   const {
     data: songsByGenre,
@@ -33,12 +32,13 @@ const GenreDetail = ({ navigation }) => {
 
   const onOptions = (audio) => {
     setModalVisible(true);
-    setSongToAdd(audio);
+    dispatch(setSongToAdd(audio))
   };
 
   const onAdd = () => {
-    dispatch(addSongToPlaylist(songToAdd));
     setModalVisible(!modalVisible);
+    setModalPlaylistsVisible(!modalPlaylistsVisible)
+
   };
 
   return !isLoading ? (
@@ -67,7 +67,6 @@ const GenreDetail = ({ navigation }) => {
           }}
           on
         >
-          <View style={styles.modalFull}></View>
           <View style={styles.modalContainerPressable}>
             <Pressable
               onPress={() => {
@@ -89,6 +88,7 @@ const GenreDetail = ({ navigation }) => {
             </Pressable>
           </View>
         </Modal>
+        <SelectModal modalPlaylistsVisible={modalPlaylistsVisible} setModalPlaylistsVisible={setModalPlaylistsVisible}/>
       </View>
     )
   ) : (
