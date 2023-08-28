@@ -68,12 +68,14 @@ export const dataApi = createApi({
       },
     }),
     addSongToPlaylist: builder.mutation({
-      query: ({ item, song }) => ({
-        url: `playlists/${item.id}.json`,
+      query: ( playlist) => ({
+        url: `playlists/${playlist.id}.json`,
         method: "PATCH",
         body: {
-          playlist: item.playlist ? [...item.playlist, song]: [song] ,
-          updateAt: Date().toLocaleString()
+          name: playlist.name,
+          playlist: playlist.playlist,
+          updateAt: Date().toLocaleString(),
+          user: playlist.user
         },
       }),
     }),

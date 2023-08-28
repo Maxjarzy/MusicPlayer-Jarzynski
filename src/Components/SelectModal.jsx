@@ -9,7 +9,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { colors } from "../../assets/Colors/Colors";
 import { useAddSongToPlaylistMutation } from "../Services/dataServices";
-import { setSongToAdd } from "../Features/Library/librarySlice";
+import { setPlaylists, setSongToAdd } from "../Features/Library/librarySlice";
 import { useEffect } from "react";
 
 const SelectModal = ({ modalPlaylistsVisible, setModalPlaylistsVisible }) => {
@@ -22,7 +22,33 @@ const SelectModal = ({ modalPlaylistsVisible, setModalPlaylistsVisible }) => {
   }, [result]);
 
   const onAddSong = (item, song) => {
-    triggerAddSong({ item, song });
+    let playlistUpdate = playlists.map((list) => {
+      if (list.id === item.id) {
+        if (!list.playlist) {
+          return {
+            ...list,
+            playlist: [song],
+            updateAt: Date().toLocaleString(),
+          };
+        } else {
+          return {
+            ...list,
+            playlist: [...list.playlist, song],
+            updateAt: Date().toLocaleString(),
+          };
+        }
+      } else {
+        return list;
+      }
+    });
+    dispatch(setPlaylists(playlistUpdate));
+    
+    playlistUpdate.map((playlist) => {
+      if (playlist.id && playlist.playlist) {
+        triggerAddSong(playlist);
+      }
+      return playlist;
+    }); 
     setModalPlaylistsVisible(!modalPlaylistsVisible);
   };
   return (
