@@ -67,6 +67,13 @@ export const dataApi = createApi({
         return playlistsWithIds;
       },
     }),
+    getPlaylistById: builder.query({
+      query: (id) => `playlists/${id}.json`,
+      transformResponse: (response) => {
+        const playlistTransformed = response;
+        return playlistTransformed;
+      },
+    }),
     addSongToPlaylist: builder.mutation({
       query: ( playlist) => ({
         url: `playlists/${playlist.id}.json`,
@@ -93,4 +100,5 @@ export const {
   useGetPlaylistByUserQuery,
   useDeletePlaylistMutation,
   useAddSongToPlaylistMutation,
+  useGetPlaylistByIdQuery
 } = dataApi;

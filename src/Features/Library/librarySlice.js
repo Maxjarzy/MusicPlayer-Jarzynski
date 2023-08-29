@@ -7,6 +7,7 @@ export const librarySlice = createSlice({
       updateAt: Date().toLocaleString(),
       playlists: [],
       songToAdd: "",
+      playlistSelected:"",
     },
   },
   reducers: {
@@ -16,9 +17,12 @@ export const librarySlice = createSlice({
     setSongToAdd: (state, action) => {
       state.value.songToAdd = action.payload;
     },
+    setPlaylistsSelected: (state, action) => {
+      state.value.playlistSelected = action.payload
+    }
   },
 });
 
-export const { setUserLibrary, setPlaylists, setSongToAdd } =
+export const { setUserLibrary, setPlaylists, setSongToAdd, setPlaylistsSelected } =
   librarySlice.actions;
 export default librarySlice.reducer;

@@ -2,23 +2,31 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import DeleteModal from "./DeleteModal";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setPlaylistsSelected } from "../Features/Library/librarySlice";
 
-const LibraryItem = ({ item, triggerDeletePlaylist }) => {
+const LibraryItem = ({ item, triggerDeletePlaylist, navigation }) => {
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
 
+  const dispatch = useDispatch()
 
   const deletePlaylist = (id) => {
     triggerDeletePlaylist(id)
     setDeleteModalVisible(!deleteModalVisible)
   }
+
+  const onSelectPlaylist = () => {
+    navigation.navigate("PlaylistDetail")
+    dispatch(setPlaylistsSelected(item.id))
+  }
   return (
     <>
-      <View style={styles.container}>
+      <Pressable style={styles.container} onPress={onSelectPlaylist}>
         <Text style={styles.text}>{item.name}</Text>
         <Pressable onPress={() => setDeleteModalVisible(true)}>
           <Feather name="more-vertical" size={24} color="black" />
         </Pressable>
-      </View>
+      </Pressable>
       <DeleteModal
         deleteModalVisible={deleteModalVisible}
         setDeleteModalVisible={setDeleteModalVisible}

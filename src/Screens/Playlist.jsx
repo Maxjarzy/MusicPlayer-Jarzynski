@@ -14,7 +14,7 @@ import { setPlaylists } from "../Features/Library/librarySlice";
 import { useDispatch, useSelector } from "react-redux";
 import Error from '../Components/Error'
 
-const PlayList = () => {
+const PlayList = ({navigation}) => {
   const [modalAddVisible, setModalAddVisible] = useState(false);
   const [name, onChangeName] = useState("");
   const [error, setError] = useState(false);
@@ -79,7 +79,7 @@ const PlayList = () => {
       <FlatList
         data={data}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <LibraryItem item={item} triggerDeletePlaylist={triggerDeletePlaylist}/>}
+        renderItem={({ item }) => <LibraryItem navigation={navigation} item={item} triggerDeletePlaylist={triggerDeletePlaylist}/>}
         style={styles.flatlist}
       />
       <Pressable onPress={onAddPlaylist}>
