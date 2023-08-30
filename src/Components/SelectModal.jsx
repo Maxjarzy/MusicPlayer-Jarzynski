@@ -13,7 +13,9 @@ import { setPlaylists, setSongToAdd } from "../Features/Library/librarySlice";
 import { useEffect } from "react";
 
 const SelectModal = ({ modalPlaylistsVisible, setModalPlaylistsVisible }) => {
-  const { songToAdd, playlists } = useSelector((state) => state.libraryReducer.value);
+  const { songToAdd, playlists } = useSelector(
+    (state) => state.libraryReducer.value
+  );
   const dispatch = useDispatch();
   const [triggerAddSong, result] = useAddSongToPlaylistMutation();
 
@@ -31,24 +33,29 @@ const SelectModal = ({ modalPlaylistsVisible, setModalPlaylistsVisible }) => {
             updateAt: Date().toLocaleString(),
           };
         } else {
-          return {
-            ...list,
-            playlist: [...list.playlist, song],
-            updateAt: Date().toLocaleString(),
-          };
+          const songExist = list.playlist.some((item) => item.id === song.id);
+          if (!songExist) {
+            return {
+              ...list,
+              playlist: [...list.playlist, song],
+              updateAt: Date().toLocaleString(),
+            };
+          }else{
+            return list;
+          }
         }
       } else {
         return list;
       }
     });
     dispatch(setPlaylists(playlistUpdate));
-    
+
     playlistUpdate.map((playlist) => {
       if (playlist.id && playlist.playlist) {
         triggerAddSong(playlist);
       }
       return playlist;
-    }); 
+    });
     setModalPlaylistsVisible(!modalPlaylistsVisible);
   };
   return (
