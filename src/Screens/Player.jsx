@@ -17,8 +17,9 @@ import { useGetSongByIdQuery } from "../Services/dataServices";
 import Loader from "../Components/Loader";
 import { Audio } from "expo-av";
 import { Asset } from "expo-asset";
+import { useEffect } from "react";
 
-const Player = ({navigation}) => {
+const Player = ({ navigation }) => {
   const songId = useSelector((state) => state.selectionReducer.value.song);
 
   const {
@@ -27,24 +28,25 @@ const Player = ({navigation}) => {
     isError,
   } = useGetSongByIdQuery(songId);
 
+  const reproducirCancion = async (audio) => {
+    const soundObject = new Audio.Sound();
+    try {
+      const asset = Asset.fromModule(
+        require(`../../assets/Songs/Genres/${audio}`)
+      );
+      await soundObject.loadAsync(asset);
+      await soundObject.playAsync();
+    } catch (error) {
+      console.error("Error al reproducir la canción:", error);
+    }
+  };
 
-  /*   const reproducirCancion = async (audio) => {
-      const soundObject = new Audio.Sound();
-      try {
-        const asset = Asset.fromModule(require(`../../assets/Songs/Genres/Pop/Shape_of_you.mp3`));
-        await soundObject.loadAsync(asset);
-        await soundObject.playAsync();
-      } catch (error) {
-        console.error('Error al reproducir la canción:', error);
-      }
-    };
-  
-
-
-  if (songSelected) {
-    const {url} = songSelected
-    reproducirCancion(url);
-  } */
+  useEffect(() => {
+    if (songSelected) {
+      const { url } = songSelected;
+      reproducirCancion(url);
+    }
+  }, [songSelected]);
 
   /*  
   const onPlay = () => {};
