@@ -15,15 +15,25 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "UIBackgroundModes": [
+          "audio"
+        ]
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.maxjarzy.MusicPlayerJarzynski"
     },
-    "web": {
+    "web": {},
+    "extra": {
+      "eas": {
+        "projectId": "d10ad0fb-7676-4fcd-8226-9b2f3323c768"
+      }
     }
   }
 }
