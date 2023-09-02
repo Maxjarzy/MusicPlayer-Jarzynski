@@ -20,7 +20,8 @@
         "UIBackgroundModes": [
           "audio"
         ]
-      }
+      },
+      "bundleIdentifier": "com.maxjarzy.MusicPlayerJarzynski"
     },
     "android": {
       "adaptiveIcon": {

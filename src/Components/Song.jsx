@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View, Pressable } from "react-native";
 import { Feather } from '@expo/vector-icons'; 
 import { useDispatch } from "react-redux";
-import { setSong } from "../Features/Selection/selectionSlice";
+import {setSongToPlay} from '../Features/Player/playerSlice'
 
 const Song = ({ item, navigation, onOptions }) => {
 
   const dispatch = useDispatch();
 
   const onSelectSong = () => {
-    dispatch(setSong(item.id));
+    dispatch(setSongToPlay(item.id));
     navigation.navigate("Play");
   };
 

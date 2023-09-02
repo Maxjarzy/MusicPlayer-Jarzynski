@@ -5,6 +5,7 @@ import { authApi } from "../Services/AuthSevices";
 import selectionReducer from "../Features/Selection/selectionSlice";
 import libraryReducer from "../Features/Library/librarySlice";
 import userReducer from "../Features/User/userSlice";
+import playerReducer from '../Features/Player/playerSlice'
 
 
 const store = configureStore({
@@ -12,6 +13,7 @@ const store = configureStore({
         selectionReducer,
         libraryReducer,
         userReducer,
+        playerReducer,
         [dataApi.reducerPath]: dataApi.reducer,
         [authApi.reducerPath]: authApi.reducer,
     },

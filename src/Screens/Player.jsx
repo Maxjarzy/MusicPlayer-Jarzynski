@@ -15,20 +15,35 @@ import {
 } from "@expo/vector-icons";
 import { colors } from "../../assets/Colors/Colors";
 import { useSelector } from "react-redux";
-import { useGetSongByIdQuery } from "../Services/dataServices";
 import Loader from "../Components/Loader";
 import { useEffect } from "react";
-import songs from "../../assets/Data/Songs";
 
 const Player = ({ navigation }) => {
+  const {songToPlay} = useSelector(state => state.playerReducer.value)
+  
+
   const setUpPlayer = async () => {
     try {
       await TrackPlayer.setupPlayer();
-      await TrackPlayer.add(songs);
+      await TrackPlayer.add(songToPlay);
+      await TrackPlayer.play()
+      TrackPlayer.updateOptions({});
+      
+    } catch (error) {
+      await TrackPlayer.reset()
+      await TrackPlayer.add(songToPlay);
+      await TrackPlayer.play()
+      TrackPlayer.updateOptions({});
+    }
+
+  /* const loadSongs = async () => {
+    try {
+      await TrackPlayer.add(songToPlay);
       TrackPlayer.updateOptions({});
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
+  } */
   };
   const togglePayBack = async (playBackState) => {
     const currentTrack = await TrackPlayer.getCurrentTrack();
@@ -42,24 +57,14 @@ const Player = ({ navigation }) => {
   };
   const playBackState = usePlaybackState();
 
-  const songId = useSelector((state) => state.selectionReducer.value.song);
-
-  const {
-    data: songSelected,
-    isLoading,
-    isError,
-  } = useGetSongByIdQuery(songId);
-
   useEffect(() => {
     setUpPlayer();
     return () => {
       TrackPlayer.reset()
-    };
-  }, []);
-   
+    }
+  }, [songToPlay]);
 
-
-  return !isLoading ? (
+  return songToPlay ? (
     <View style={styles.container}>
       <View style={styles.info}>
         <Image
@@ -137,7 +142,7 @@ const styles = StyleSheet.create({
     borderBottomColor: "white",
     borderBottomWidth: 0.5,
     padding: 5,
-    columnGap: 10
+    columnGap: 10,
   },
   icon: {
     margin: 2,
