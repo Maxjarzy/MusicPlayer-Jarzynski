@@ -3,9 +3,9 @@ import { colors } from '../../assets/Colors/Colors';
 import { MaterialIcons, Ionicons } from '@expo/vector-icons'; 
 
 
-
-const DeleteModal = ({ deleteModalVisible, setDeleteModalVisible,item, deletePlaylist}) => {
+const DeleteModal = ({ deleteModalVisible, setDeleteModalVisible,item, deletePlaylist, onPlayPlaylist}) => {
   
+
     return (
       <View style={styles.centeredView}>
         <Modal
@@ -18,7 +18,7 @@ const DeleteModal = ({ deleteModalVisible, setDeleteModalVisible,item, deletePla
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
               <Text style={styles.modalText}>{item.name}</Text>
-              <Pressable >
+              <Pressable onPress={() => onPlayPlaylist(item.playlist)}>
               <View style={styles.pressableContainer}>
               <Ionicons name="md-play-sharp" size={26} color="black" />
                 <Text style={styles.pressableText}>

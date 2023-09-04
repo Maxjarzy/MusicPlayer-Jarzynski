@@ -119,6 +119,6 @@ const styles = StyleSheet.create({
   },
   tabBar: {
     backgroundColor: colors.catDarkness,
-    height: 80,
+    flex: 1/8,
   },
 });

@@ -4,6 +4,8 @@ import DeleteModal from "./DeleteModal";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setPlaylistsSelected } from "../Features/Library/librarySlice";
+import {setPlaylistToPlay} from '../Features/Player/playerSlice'
+
 
 const LibraryItem = ({ item, triggerDeletePlaylist, navigation }) => {
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
@@ -19,6 +21,12 @@ const LibraryItem = ({ item, triggerDeletePlaylist, navigation }) => {
     navigation.navigate("PlaylistDetail")
     dispatch(setPlaylistsSelected(item.id))
   }
+
+  const onPlayPlaylist =(playlist) => {
+    dispatch(setPlaylistToPlay(playlist))
+    setDeleteModalVisible(!deleteModalVisible)
+    navigation.navigate("Player")
+  }
   return (
     <>
       <Pressable style={styles.container} onPress={onSelectPlaylist}>
@@ -32,6 +40,7 @@ const LibraryItem = ({ item, triggerDeletePlaylist, navigation }) => {
         setDeleteModalVisible={setDeleteModalVisible}
         item={item}
         deletePlaylist={deletePlaylist}
+        onPlayPlaylist={onPlayPlaylist}
       />
     </>
   );

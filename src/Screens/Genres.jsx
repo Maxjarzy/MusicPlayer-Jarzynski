@@ -47,7 +47,7 @@ export default Genres;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 5,
+    flex: 1,
     backgroundColor: colors.catDarkness,
   },
   background: {

@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   },
   songTitle: {
     color: "#000000",
-    fontFamily: "Noto-Sans",
+    fontFamily: "Noto-Sans-Bold",
     fontWeight: "500",
   },
 });

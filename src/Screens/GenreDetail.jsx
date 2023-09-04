@@ -68,16 +68,6 @@ const GenreDetail = ({ navigation }) => {
           on
         >
           <View style={styles.modalContainerPressable}>
-            <Pressable
-              onPress={() => {
-                console.log("Reproduciendo"), setModalVisible(!modalVisible);
-              }}
-            >
-              <View style={styles.pressableContainer}>
-                <Ionicons name="md-play-sharp" size={26} color="black" />
-                <Text style={styles.pressableText}>Reproducir</Text>
-              </View>
-            </Pressable>
             <Pressable onPress={onAdd}>
               <View style={styles.pressableContainer}>
                 <MaterialIcons name="playlist-add" size={26} color="black" />
