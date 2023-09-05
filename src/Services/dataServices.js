@@ -75,15 +75,22 @@ export const dataApi = createApi({
       },
     }),
     addSongToPlaylist: builder.mutation({
-      query: ( playlist) => ({
+      query: (playlist) => ({
         url: `playlists/${playlist.id}.json`,
         method: "PATCH",
         body: {
           name: playlist.name,
           playlist: playlist.playlist,
           updateAt: Date().toLocaleString(),
-          user: playlist.user
+          user: playlist.user,
         },
+      }),
+    }),
+    deleteSongToPlaylist: builder.mutation({
+      query: ({songToDelete, playlistSelected}) => ({
+        url: `playlists/${playlistSelected}.json/`,
+        method: "PATCH",
+        body: songToDelete,
       }),
     }),
   }),
@@ -100,5 +107,6 @@ export const {
   useGetPlaylistByUserQuery,
   useDeletePlaylistMutation,
   useAddSongToPlaylistMutation,
-  useGetPlaylistByIdQuery
+  useGetPlaylistByIdQuery,
+  useDeleteSongToPlaylistMutation,
 } = dataApi;

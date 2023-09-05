@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { useGetPlaylistByUserQuery } from "../../Services/dataServices";
 
 export const librarySlice = createSlice({
   name: "library",
@@ -7,7 +8,8 @@ export const librarySlice = createSlice({
       updateAt: Date().toLocaleString(),
       playlists: [],
       songToAdd: "",
-      playlistSelected:"",
+      songToDelete: "",
+      playlistSelected: "",
     },
   },
   reducers: {
@@ -18,11 +20,30 @@ export const librarySlice = createSlice({
       state.value.songToAdd = action.payload;
     },
     setPlaylistsSelected: (state, action) => {
-      state.value.playlistSelected = action.payload
-    }
+      state.value.playlistSelected = action.payload;
+    },
+    setSongToDelete: (state, action) => {
+      const playlist = state.value.playlists.filter(
+        (playlist) => playlist.id === state.value.playlistSelected
+      );
+      const playlistUpdate = playlist[0].playlist.filter(
+        (song) => song.id !== action.payload.id
+      );
+      const playlistNew = {
+        name: playlist[0].name,
+        playlist: playlistUpdate,
+        updateAt: Date().toLocaleString(),
+        user: playlist[0].user,
+      };
+      state.value.songToDelete = playlistNew;
+    },
   },
 });
 
-export const { setUserLibrary, setPlaylists, setSongToAdd, setPlaylistsSelected } =
-  librarySlice.actions;
+export const {
+  setPlaylists,
+  setSongToAdd,
+  setPlaylistsSelected,
+  setSongToDelete,
+} = librarySlice.actions;
 export default librarySlice.reducer;

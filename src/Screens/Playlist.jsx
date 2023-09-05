@@ -63,7 +63,7 @@ const PlayList = ({navigation}) => {
   ) : data.length === 0 ? (
     <View style={styles.container}>
       <Pressable onPress={onAddPlaylist}>
-        <Ionicons name="add-circle-outline" size={50} color="black" />
+        <Ionicons name="add-circle-outline" size={50} color={colors.sun} />
       </Pressable>
       <AddModal
         confirmPlaylist={confirmPlaylist}
@@ -83,7 +83,7 @@ const PlayList = ({navigation}) => {
         style={styles.flatlist}
       />
       <Pressable onPress={onAddPlaylist}>
-        <Ionicons name="add-circle-outline" size={50} color="black" />
+        <Ionicons name="add-circle-outline" size={50} color={colors.sun} />
       </Pressable>
       <AddModal
         confirmPlaylist={confirmPlaylist}

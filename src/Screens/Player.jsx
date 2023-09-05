@@ -222,7 +222,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 5,
     columnGap: 15,
-    marginBottom: 15,
   },
   icon: {
     margin: 5,
@@ -255,7 +254,7 @@ const styles = StyleSheet.create({
   },
   slider: {
     height: 40,
-    marginVertical: 5,
+    marginVertical: 4,
   },
   progressNumbers: {
     flexDirection: "row",
