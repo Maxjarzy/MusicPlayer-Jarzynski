@@ -1,25 +1,27 @@
 import { StyleSheet, Text, View, Pressable } from "react-native";
 import { Feather } from "@expo/vector-icons";
-import { useDispatch } from "react-redux";
-import {setSongToDelete} from '../Features/Library/librarySlice'
+import { useDispatch, useSelector } from "react-redux";
+import { setSongToDelete } from "../Features/Library/librarySlice";
 
 const PlayListDetailItem = ({
   item,
   setDeleteSongModalVisible,
-  deleteSongModalVisible 
+  deleteSongModalVisible,
 }) => {
+  const { playlists, songToAdd, songToDelete, playlistSelected } = useSelector(
+    (state) => state.libraryReducer.value
+  );
+
   const dispatch = useDispatch();
 
   const handleDeleteSong = () => {
-    setDeleteSongModalVisible(!deleteSongModalVisible)
-    dispatch(setSongToDelete(item))
-  }
+    setDeleteSongModalVisible(!deleteSongModalVisible);
+    dispatch(setSongToDelete(item));
+  };
   return (
     <View style={styles.song}>
       <Text style={styles.songTitle}>{item.title}</Text>
-      <Pressable
-        onPress={() => handleDeleteSong()}
-      >
+      <Pressable onPress={() => handleDeleteSong()}>
         <Feather name="more-vertical" size={24} color="black" />
       </Pressable>
     </View>

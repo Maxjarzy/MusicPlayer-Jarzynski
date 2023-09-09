@@ -15,6 +15,7 @@ import Player from "../Screens/Player";
 import AuthStack from "./AuthStack";
 import { useSelector } from "react-redux";
 import MyProfileStack from "./MyProfileStack";
+import Header from "../Components/Header";
 
 const Tab = createBottomTabNavigator();
 
@@ -27,9 +28,11 @@ const Navigator = () => {
         {email ? (
           <Tab.Navigator
             screenOptions={{
-              headerShown: false,
               tabBarShowLabel: false,
               tabBarStyle: styles.tabBar,
+              header: () => {
+                return <Header />;
+              },
             }}
           >
             <Tab.Screen
@@ -90,9 +93,9 @@ const Navigator = () => {
                 tabBarIcon: ({ focused }) => {
                   return (
                     <View>
-                      <Feather 
-                        name="user" 
-                        size={30} 
+                      <Feather
+                        name="user"
+                        size={30}
                         color={focused ? colors.sun : "white"}
                       />
                     </View>
@@ -115,10 +118,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: "100%",
-    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+    //paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
   tabBar: {
     backgroundColor: colors.catDarkness,
-    flex: 1/8,
+    flex: 1 / 8,
   },
 });

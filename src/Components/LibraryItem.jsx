@@ -25,7 +25,7 @@ const LibraryItem = ({ item, triggerDeletePlaylist, navigation }) => {
   const onPlayPlaylist =(playlist) => {
     dispatch(setPlaylistToPlay(playlist))
     setDeleteModalVisible(!deleteModalVisible)
-    navigation.navigate("Player")
+    navigation.navigate("Play")
   }
   return (
     <>

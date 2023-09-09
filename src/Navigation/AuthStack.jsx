@@ -9,8 +9,10 @@ const AuthStack = () => {
     <Stack.Navigator
       initialRouteName="Signup"
       screenOptions={() => ({
-        headerShown: false
+        headerShown: false,
+        
       })}
+      
     >
       <Stack.Screen name="Signup" component={SignupScreen} />
       <Stack.Screen name="Login" component={LoginScreen} />

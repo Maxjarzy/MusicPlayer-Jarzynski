@@ -1,6 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import PlayList from "../Screens/Playlist"
-import Header from "../Components/Header";
 import PlaylistDetail from '../Screens/PlaylistDetail'
 
 const PlayListStack = () => {
@@ -12,9 +11,7 @@ const PlayListStack = () => {
     <Stack.Navigator
       initialRouteName="Playlist"
       screenOptions={({ route }) => ({
-        header: () => {
-          return <Header />;
-        },
+        headerShown: false,
       })}
     >
       <Stack.Screen name="Playlist" component={PlayList} />

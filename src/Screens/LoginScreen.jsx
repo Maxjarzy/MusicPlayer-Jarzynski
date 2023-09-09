@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 import { isValidEmail, isAtLeastSixCharacters } from "../Validations/auth";
 import { useDispatch } from "react-redux";
 import { setUser } from "../Features/User/userSlice";
-import { useGetGenreImageQuery } from "../Services/dataServices";
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");

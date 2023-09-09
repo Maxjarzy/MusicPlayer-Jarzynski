@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Pressable } from "react-native";
-import TrackPlayer, { TrackType } from "react-native-track-player";
+import TrackPlayer from "react-native-track-player";
 
 const ItemActualPlaylist = ({ item }) => {
   const skipToSong = async () => {

@@ -10,10 +10,6 @@ const DeleteSongModal = ({
   deleteSongModalVisible,
   setDeleteSongModalVisible,
 }) => {
-  const { songToDelete, playlistSelected } = useSelector(
-    (state) => state.libraryReducer.value
-  );
-
   const [deleteSongTrigger, deleteSongResult] =
     useDeleteSongToPlaylistMutation();
   const dispatch = useDispatch();
@@ -36,9 +32,11 @@ const DeleteSongModal = ({
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <Pressable
-              onPress={() =>
-                deleteSongTrigger({ songToDelete, playlistSelected })
-              }
+              onPress={() => {
+                deleteSongTrigger({ songToDelete, playlistSelected });
+                dispatch(setSongToDelete(""));
+                setDeleteSongModalVisible(!deleteSongModalVisible);
+              }}
               style={styles.pressable}
             >
               <View style={styles.pressableContainer}>

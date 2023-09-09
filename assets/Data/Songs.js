@@ -265,7 +265,7 @@ const songs =
         id: 30,
         title: 'Blinding ligths',
         artist: 'The Weeknd',
-        genre: 'R&B',
+        genre: 'RB',
         url: require('../../assets/Songs/Genres/R&B/Blinding_lights.mp3'),
         artwork: 'https://i.discogs.com/yd-eq2r-vp7K3z8DHt5mEEa6qys2sJziJjI86mCDkBs/rs:fit/g:sm/q:90/h:500/w:500/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE0NjQ4/MTkwLTE1Nzg4NjA5/MDUtNjkxOC5qcGVn.jpeg',
         duration: 199
@@ -274,7 +274,7 @@ const songs =
         id: 31,
         title: 'Say so',
         artist: 'Doja Cat',
-        genre: 'R&B',
+        genre: 'RB',
         url: require('../../assets/Songs/Genres/R&B/Say_so.mp3'),
         artwork: 'https://i.ebayimg.com/00/s/NzI3WDcyNw==/z/rBwAAOSwaQdf4uW8/$_12.JPG?set_id=880000500F',
         duration: 239

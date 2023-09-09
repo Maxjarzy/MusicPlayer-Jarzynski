@@ -1,6 +1,5 @@
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import { useSelector } from "react-redux";
-import PlayListItem from "../Components/PlayListItem";
 import {colors} from '../../assets/Colors/Colors'
 import ItemActualPlaylist from "../Components/ItemActualPlaylist";
 const ActualPlaylist = () => {

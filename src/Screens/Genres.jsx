@@ -1,8 +1,11 @@
 import { StyleSheet, View, FlatList, ImageBackground } from "react-native";
-import { useGetGenresQuery, useGetPlaylistByUserQuery } from "../Services/dataServices";
+import {
+  useGetGenresQuery,
+  useGetPlaylistByUserQuery,
+} from "../Services/dataServices";
 import { colors } from "../../assets/Colors/Colors";
 import { useDispatch, useSelector } from "react-redux";
-import { setPlaylists, setUserLibrary } from "../Features/Library/librarySlice";
+import { setPlaylists } from "../Features/Library/librarySlice";
 import { useEffect } from "react";
 import GenreItem from "../Components/GenreItem";
 import Loader from "../Components/Loader";
@@ -11,9 +14,9 @@ import Error from "../Components/Error";
 const Genres = ({ navigation }) => {
   const { data: genres, isLoading, isError } = useGetGenresQuery();
   const { email } = useSelector((state) => state.userReducer.value);
-  const { data } =useGetPlaylistByUserQuery(email);
+  const { data } = useGetPlaylistByUserQuery(email);
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     dispatch(setPlaylists(data));
   });

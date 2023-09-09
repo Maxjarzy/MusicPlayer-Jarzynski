@@ -102,7 +102,7 @@ const Player = ({ navigation }) => {
           <Animatable.View
             style={styles.songInfoTextAnimated}
             iterationCount={"infinite"}
-            iterationDelay={2000}
+            iterationDelay={0}
             duration={20000}
             useNativeDriver={true}
             animation={"slideOutLeft"}
@@ -111,7 +111,7 @@ const Player = ({ navigation }) => {
               {actualSong ? actualSong.title : ""}
             </Text>
           </Animatable.View>
-          <Text numberOfLines={1} style={styles.songInfoText}>
+          <Text numberOfLines={1} style={styles.songInfoTextaArtist}>
             {actualSong ? actualSong.artist : ""}
           </Text>
         </View>
@@ -131,10 +131,12 @@ const Player = ({ navigation }) => {
         />
         <View style={styles.progressNumbers}>
           <Text style={styles.progressText}>
-            {new Date(progress.position * 1000).toLocaleString("en-US", {
-              minute: "2-digit",
-              second: "2-digit",
-            })}
+            {actualSong
+              ? new Date(progress.position * 1000).toLocaleString("en-US", {
+                  minute: "2-digit",
+                  second: "2-digit",
+                })
+              : "00:00"}
           </Text>
           <Text style={styles.progressText}>
             {actualSong
@@ -269,17 +271,23 @@ const styles = StyleSheet.create({
   },
   songInfoText: {
     textAlign: "justify",
-    fontSize: 20,
+    fontSize: 28,
     color: "white",
     fontFamily: "Noto-Sans",
   },
   songInfoTextAnimated: {
     textAlign: "justify",
-    fontSize: 20,
+    fontSize: 18,
     color: "white",
     fontFamily: "Noto-Sans",
     display: "flex",
     flexDirection: "row",
     width: 1000,
+  },
+  songInfoTextaArtist: {
+    textAlign: "justify",
+    fontSize: 20,
+    color: "white",
+    fontFamily: "Noto-Sans",
   },
 });

@@ -1,5 +1,4 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import Header from '../Components/Header'
 import MyProfile from '../Screens/MyProfile'
 import ImageSelector from '../Screens/ImageSelector'
 
@@ -11,7 +10,7 @@ const MyProfileStack = () => {
     <Stack.Navigator
         initialRouteName="MyProfile"
         screenOptions={{
-            header: () => <Header/>
+            headerShown:false,
         }}
         >
             <Stack.Screen name="MyProfile" component={MyProfile}/>
