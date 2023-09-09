@@ -2,16 +2,16 @@
 Proyecto creado cómo proyecto final del curso Desarrollo de Aplicacion de Coderhous. Consiste en un reproductor de musica creado con React Native bajo la plataforma Expo.  
 La aplicación nos permite la creación y el logueo de usuarios gracias a la implementación de Authentication de Firebase. Estos usuarios tienen la opción de reproducir la canción deseada, así como también de crear, eliminar y reproducir listas propias. Esto gracías a la implementación de Realtime Database de Firebase que guarda las mismas. 
 
-##Comenzando 🚀
+## Comenzando 🚀
 Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas.
 
-####Pre-requisitos 📋
+#### Pre-requisitos 📋
 Antes de comenzar, asegúrate de cumplir con los siguientes requisitos:
 
 - Deberás obtener una copia del proyecto. Puedes descargar el código desde la opción "Download ZIP" del [repositorio](https://github.com/Maxjarzy/MusicPlayer-Jarzynski), o clonarlo vía HTTPS.
 - Además, necesitarás la **APK** de desarrollo, que puedes encontrar [aquí](https://expo.dev/accounts/maxjarzy/projects/MusicPlayer-Jarzynski/builds/6a35e515-9458-4cb0-919d-10982f8e9a92).
 
-####Instalación 🔧
+#### Instalación 🔧
 
 
 ##### Descarga y Descompresión (ZIP)
@@ -41,7 +41,7 @@ Antes de comenzar, asegúrate de cumplir con los siguientes requisitos:
 - Luego, inicia el proyecto con ***"npx expo start --dev-client"***.
 - No olvides instalar la **APK** en el dispositivo de prueba, ya sea emulador o dispositivo físico.
 
-##Construido con 🛠️
+## Construido con 🛠️
 
 - `expo` (~48.0.18): Expo fué utilizada para la creación base de la aplicación, simplificando la configuración de nuestro proyecto.
 
@@ -74,5 +74,5 @@ Antes de comenzar, asegúrate de cumplir con los siguientes requisitos:
 
 Este proyecto está en desarrollo y aún se encuentra en una fase temprana.
 
-##Autor ✒️
+## Autor ✒️
 Maximiliano Jarzynski - [LinkedIn](https://www.linkedin.com/in/maximiliano-jarzynski/) - [GitHub](https://github.com/Maxjarzy/)
