@@ -14,7 +14,7 @@ const songs =
         title: 'M.A Remix',
         artist: 'BM, Callejero Fino, La Joaqui, Lola Indigo',
         genre: 'Cumbia',
-        url: require('../../assets/Songs/Genres/Cumbia/MA_remix.mp3'),
+        url: require('../../assets/Songs/Genres/Cumbia/MA_Remix.mp3'),
         artwork: 'https://i.scdn.co/image/ab67616d0000b273cbbbad87cff1115a090ed190',
         duration: 268
     },
@@ -23,7 +23,7 @@ const songs =
         title: 'Un Finde',
         artist: 'Big One, FMK, Ke personajes',
         genre: 'Cumbia',
-        url:require('../../assets/Songs/Genres/Cumbia/Un_finde.mp3'),
+        url:require('../../assets/Songs/Genres/Cumbia/Un_Finde.mp3'),
         artwork: 'https://www.cmtv.com.ar/tapas-cd/0151158001680714482.webp',
         duration: 162
     },
